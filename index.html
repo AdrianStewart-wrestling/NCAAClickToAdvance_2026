@@ -174,7 +174,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
    PRINT STYLES  —  1 landscape page per weight
    ════════════════════════════════════════════════ */
 @media print {
-  @page { size: landscape; margin:5mm 6mm; }
+  @page { size: landscape; margin:8mm 8mm; }
   * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
   html,body { height:auto !important; overflow:visible !important; background:#fff !important; color:#000 !important; }
   .hdr,.wtabs,#area,#print-modal { display:none !important; }
@@ -183,47 +183,41 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   .print-page {
     break-after: page;
     break-inside: avoid;
-    width:267mm;
-    height:182mm;
+    width:100%;
     overflow:hidden;
     background:#fff; color:#000;
     font-family:Arial,Helvetica,sans-serif;
-    position:relative;
-    display:flex;
-    flex-direction:column;
+    /* zoom set via inline style by JS to fit content */
   }
   .print-page:last-child { break-after: avoid; }
 
-  /* psw: the inner content wrapper — scale to fit via JS */
-  .psw {
-    position:absolute; top:0; left:0;
-    transform-origin:top left;
-  }
+  /* psw: natural-size content container */
+  .psw { display:block; }
 
   /* ── Page header ── */
   .ph { display:flex; align-items:center; justify-content:space-between;
-        border-bottom:2.5px solid #111; padding-bottom:2px; margin-bottom:3px; }
-  .ph-title { font-size:10pt; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; line-height:1; }
-  .ph-sub   { font-size:5.5pt; color:#666; text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
-  .ph-wt    { font-size:26pt; font-weight:900; line-height:1; }
+        border-bottom:2.5px solid #111; padding-bottom:3px; margin-bottom:4px; }
+  .ph-title { font-size:11pt; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; line-height:1; }
+  .ph-sub   { font-size:6pt; color:#666; text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
+  .ph-wt    { font-size:28pt; font-weight:900; line-height:1; }
   .ph-right { text-align:right; min-width:90px; }
-  .ph-clbl  { font-size:5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .ph-cnm   { font-size:9pt; font-weight:900; line-height:1.2; }
-  .ph-csc   { font-size:5.5pt; color:#555; }
+  .ph-clbl  { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
+  .ph-cnm   { font-size:10pt; font-weight:900; line-height:1.2; }
+  .ph-csc   { font-size:6pt; color:#555; }
 
   /* ── Section labels ── */
-  .ps-lbl { font-size:5pt; text-transform:uppercase; letter-spacing:2px; color:#999;
-            border-top:1px solid #e0e0e0; padding-top:1.5px; margin:2px 0; }
+  .ps-lbl { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#999;
+            border-top:1px solid #e0e0e0; padding-top:2px; margin:3px 0; }
 
   /* ── Bracket grid ── */
   .pbg  { display:flex; align-items:flex-start; gap:0; }
   .prc  { display:flex; flex-direction:column; }
-  .prh  { font-size:4.5pt; text-transform:uppercase; letter-spacing:1px; color:#aaa;
+  .prh  { font-size:5pt; text-transform:uppercase; letter-spacing:1px; color:#aaa;
           text-align:center; padding:0 2px 2px; white-space:nowrap; }
-  .prcn { width:7px; flex-shrink:0; }
+  .prcn { width:8px; flex-shrink:0; }
 
   /* ── Match cards ── */
-  .pm   { border:1px solid #ccc; border-radius:1px; overflow:hidden; width:100px; flex-shrink:0; background:#fff; }
+  .pm   { border:1px solid #ccc; border-radius:1px; overflow:hidden; width:112px; flex-shrink:0; background:#fff; }
   .pm.champ-final { border:2px solid #111; }
   .pm.pigtail     { border:1px dashed #bbb; }
   .pm.consolation { border-color:#bbb; background:#fafafa; }
@@ -231,29 +225,29 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   .pmd  { height:1px; background:#ddd; }
 
   /* ── Wrestler slots ── */
-  .ps   { display:flex; align-items:center; padding:1px 3px; min-height:13px; }
+  .ps   { display:flex; align-items:center; padding:2px 3px; min-height:16px; }
   .ps.win  { background:#e8f5e9; border-left:2.5px solid #2e7d32; }
   .ps.los  { opacity:0.4; }
   .ps.tbd  { opacity:0.2; }
-  .psseed  { font-size:4.5pt; color:#bbb; width:8px; flex-shrink:0; text-align:right; padding-right:1px; }
+  .psseed  { font-size:5pt; color:#bbb; width:9px; flex-shrink:0; text-align:right; padding-right:1px; }
   .ps.win .psseed { color:#2e7d32; }
-  .psname  { flex:1; font-size:5pt; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 2px; font-weight:500; }
+  .psname  { flex:1; font-size:5.5pt; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 2px; font-weight:500; }
   .ps.win .psname  { font-weight:700; color:#1b5e20; }
   .ps.los .psname  { text-decoration:line-through; color:#bbb; }
-  .pssch   { font-size:4pt; color:#bbb; flex-shrink:0; max-width:26px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pstbd   { font-size:4.5pt; color:#ccc; font-style:italic; }
+  .pssch   { font-size:4.5pt; color:#bbb; flex-shrink:0; max-width:28px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .pstbd   { font-size:5pt; color:#ccc; font-style:italic; }
 
   /* ── Champion box ── */
   .pchbox { display:flex; align-items:center; padding:0 4px; }
-  .pchcard { border:2px solid #111; border-radius:2px; padding:3px 5px; text-align:center; min-width:60px; background:#fffdf5; }
-  .pchcard .pcrown { font-size:10pt; margin-bottom:1px; line-height:1; }
-  .pchcard .pclbl  { font-size:4pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .pchcard .pcnm   { font-size:6.5pt; font-weight:900; text-transform:uppercase; line-height:1.3; }
-  .pchcard .pcsc   { font-size:4.5pt; color:#555; }
+  .pchcard { border:2px solid #111; border-radius:2px; padding:4px 6px; text-align:center; min-width:65px; background:#fffdf5; }
+  .pchcard .pcrown { font-size:12pt; margin-bottom:1px; line-height:1; }
+  .pchcard .pclbl  { font-size:4.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
+  .pchcard .pcnm   { font-size:7pt; font-weight:900; text-transform:uppercase; line-height:1.3; }
+  .pchcard .pcsc   { font-size:5pt; color:#555; }
   .pchcard.empty .pcnm { color:#aaa; font-weight:400; }
 
   /* ── Place labels ── */
-  .ppl-lbl { font-size:4pt; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:1px; }
+  .ppl-lbl { font-size:4.5pt; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:1px; }
 }
 
 </style>
@@ -310,7 +304,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 
 const FIELDS = {
   125: [
-   {n:"Luke Lilledahl",s:"Penn State"},        // 1
+   {n:"Braeden Davis",s:"Penn State"},        // 1
 {n:"Luke Stanich",s:"Lehigh"},        // 2
 {n:"Drake Ayala",s:"Iowa"},        // 3
 {n:"Matt Ramos",s:"Purdue"},        // 4
@@ -1334,51 +1328,42 @@ function doPrint() {
 
   const root = document.getElementById('print-root');
   root.innerHTML = selected.map(wt =>
-    `<div class="print-page"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
+    `<div class="print-page" id="pp-${wt}"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
   ).join('');
 
-  // Measure content in an off-screen sandbox at a known width
-  root.style.display = 'block';
-  root.style.position = 'fixed';
-  root.style.top = '-99999px';
-  root.style.left = '0';
-  root.style.width = '3000px';
-  root.style.height = 'auto';
+  // Measure off-screen in a wide unconstrained sandbox
+  root.style.cssText = 'display:block;position:fixed;top:-99999px;left:0;width:4000px;height:auto;';
 
-  // Page printable area: 267mm x 182mm  (landscape A4 minus 5mm/6mm margins)
-  // At 96dpi: 1mm = 3.7795px
+  // Landscape A4 printable area at 96dpi (minus 8mm margins each side)
+  // A4 landscape = 297mm x 210mm; minus 16mm W margins, 16mm H margins
+  // 1mm = 3.7795px at 96dpi
   const MM = 3.7795;
-  const PAGE_W_PX = 267 * MM;
-  const PAGE_H_PX = 182 * MM;
+  const PAGE_W = (297 - 16) * MM;  // ~1061px
+  const PAGE_H = (210 - 16) * MM;  // ~733px
 
   requestAnimationFrame(() => requestAnimationFrame(() => {
     selected.forEach(wt => {
-      const wrap = document.getElementById(`psw-${wt}`);
-      if (!wrap) return;
+      const psw = document.getElementById(`psw-${wt}`);
+      const page = document.getElementById(`pp-${wt}`);
+      if (!psw || !page) return;
 
-      const naturalW = wrap.scrollWidth;
-      const naturalH = wrap.scrollHeight;
+      const W = psw.scrollWidth;
+      const H = psw.scrollHeight;
+      if (!W || !H) return;
 
-      // Scale to fit within printable area, never exceed 1.0 upward unless tiny
-      const scale = Math.min(PAGE_W_PX / naturalW, PAGE_H_PX / naturalH, 1.05);
-      wrap.style.transform = `scale(${scale})`;
-      wrap.style.transformOrigin = 'top left';
-
-      // Center within the page box
-      const scaledW = naturalW * scale;
-      const scaledH = naturalH * scale;
-      wrap.style.left = `${Math.max(0, (PAGE_W_PX - scaledW) / 2)}px`;
-      wrap.style.top  = `${Math.max(0, (PAGE_H_PX - scaledH) / 2)}px`;
+      const zoom = Math.min(PAGE_W / W, PAGE_H / H);
+      // Apply zoom to the page div so the browser scales everything uniformly for print
+      page.style.zoom = zoom;
     });
 
     setTimeout(() => {
-      root.style.position = '';
-      root.style.top = '';
-      root.style.left = '';
-      root.style.width = '';
+      root.style.cssText = 'display:block;';
       window.print();
-      setTimeout(() => { root.style.display = 'none'; root.innerHTML = ''; }, 1500);
-    }, 200);
+      setTimeout(() => {
+        root.style.cssText = 'display:none;';
+        root.innerHTML = '';
+      }, 1500);
+    }, 250);
   }));
 }
 // ── Print page HTML builder ─────────────────────────────────
@@ -1420,7 +1405,7 @@ function pChampCard(champ) {
 
 function buildPrintPage(wt) {
   const st = getS(wt);
-  const MH = 28, GAP = 2;
+  const MH = 34, GAP = 2;
   const RN  = ['Rd 1','Rd 16','QF','SF','Final'];
   const CN  = ['Con 1','Con 2','Con 3','Con 4','Con SF'];
 
