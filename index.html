@@ -95,7 +95,26 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 @keyframes wflash{0%{background:#4ade80}100%{background:var(--green)}}
 
 /* CHAMP BOX */
-.cbox{display:flex;align-items:center;padding:0 14px}
+.cbox{display:flex;align-items:flex-start;padding:0 14px;flex-direction:column;gap:10px}
+
+/* ALL-AMERICANS PANEL */
+.aa-panel{background:var(--s1);border:1px solid var(--b1);border-radius:5px;min-width:152px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.aa-hdr{background:linear-gradient(135deg,#1a1f2e,#2c2408);padding:6px 10px;text-align:center}
+.aa-hdr-t{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--gold2)}
+.aa-hdr-s{font-size:8px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase}
+.aa-row{display:flex;align-items:center;padding:4px 8px;border-bottom:1px solid var(--b1);gap:6px}
+.aa-row:last-child{border-bottom:none}
+.aa-place{font-family:'Bebas Neue',sans-serif;font-size:14px;width:18px;flex-shrink:0;text-align:center}
+.aa-medal{font-size:12px;width:16px;flex-shrink:0;text-align:center}
+.aa-info{flex:1;min-width:0}
+.aa-name{font-size:10px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aa-school{font-size:8px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aa-row.place-1 .aa-place{color:#b8860b}
+.aa-row.place-2 .aa-place{color:#6b7280}
+.aa-row.place-3 .aa-place{color:#92400e}
+.aa-row.place-4 .aa-place{color:var(--t2)}
+.aa-row.place-5,.aa-row.place-6,.aa-row.place-7,.aa-row.place-8{opacity:.85}
+.aa-tbd{font-size:9px;color:var(--t3);font-style:italic;padding:3px 0}
 .ccard{background:linear-gradient(135deg,#fffbf0,#fdf6e3,#fffbf0);border:2px solid var(--gold);border-radius:5px;padding:14px 16px;text-align:center;min-width:152px;box-shadow:0 0 16px rgba(184,134,11,.18)}
 .ccard .crn{font-size:22px;margin-bottom:5px}
 .ccard .clbl{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:3px}
@@ -291,7 +310,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 
 const FIELDS = {
   125: [
-   {n:"Braeden Davis",s:"Penn State"},        // 1
+   {n:"Luke Lilledahl",s:"Penn State"},        // 1
 {n:"Luke Stanich",s:"Lehigh"},        // 2
 {n:"Drake Ayala",s:"Iowa"},        // 3
 {n:"Matt Ramos",s:"Purdue"},        // 4
@@ -326,7 +345,7 @@ const FIELDS = {
 {n:"Tristan Lujan",s:"Michigan State"},        // 33 — pigtail
   ],
   133: [
-    {n:"Jax Forrest",s:"Oklahoma St."},        // 1
+    {n:"Daton Fix",s:"Oklahoma St."},        // 1
     {n:"Vito Arujau",s:"Cornell"},           // 2
     {n:"Jesse Mendez",s:"Oklahoma St."},     // 3
     {n:"Brody Teske",s:"N. Iowa"},           // 4
@@ -1109,21 +1128,75 @@ function matchHTML(m, bkt, ri, mi, extra='') {
   </div>`;
 }
 
-function champBox(champion) {
-  if (champion) {
-    const p = champion.n.split(' ');
-    return `<div class="cbox"><div class="ccard">
-      <div class="crn">🏆</div>
-      <div class="clbl">Champion</div>
-      <div class="cnm">${p[0]} ${p.slice(1).join(' ')}</div>
-      <div class="csc">${champion.s}</div>
-    </div></div>`;
+function getWinner(m) { return m && m.w ? m[m.w] : null; }
+function getLoser(m)  { return m && m.w ? m[m.w==='a'?'b':'a'] : null; }
+
+function getAllAmericans(st) {
+  // Places 1-8 sources:
+  // 1st: champion
+  // 2nd: champ final loser
+  // 3rd: place3 winner
+  // 4th: place3 loser
+  // 5th: place5 winner
+  // 6th: place5 loser
+  // 7th: place7 winner
+  // 8th: place7 loser
+  const champFinal = st.champ[4][0];
+  return [
+    { place:1, medal:'🥇', wr: st.champion },
+    { place:2, medal:'🥈', wr: getLoser(champFinal) },
+    { place:3, medal:'🥉', wr: getWinner(st.place3) },
+    { place:4, medal:'4',  wr: getLoser(st.place3) },
+    { place:5, medal:'5',  wr: getWinner(st.place5) },
+    { place:6, medal:'6',  wr: getLoser(st.place5) },
+    { place:7, medal:'7',  wr: getWinner(st.place7) },
+    { place:8, medal:'8',  wr: getLoser(st.place7) },
+  ];
+}
+
+function champBox(st) {
+  const champion = st.champion;
+  const aa = getAllAmericans(st);
+  const anyAA = aa.some(r => r.wr);
+
+  const champCard = champion
+    ? `<div class="ccard">
+        <div class="crn">🏆</div>
+        <div class="clbl">Champion</div>
+        <div class="cnm">${champion.n}</div>
+        <div class="csc">${champion.s}</div>
+      </div>`
+    : `<div class="ccard empty">
+        <div class="crn">🏆</div>
+        <div class="clbl">Champion</div>
+        <div class="cnm">Undecided</div>
+      </div>`;
+
+  if (!anyAA) {
+    return `<div class="cbox"><div>${champCard}</div></div>`;
   }
-  return `<div class="cbox"><div class="ccard empty">
-    <div class="crn">🏆</div>
-    <div class="clbl">Champion</div>
-    <div class="cnm">Undecided</div>
-  </div></div>`;
+
+  const rows = aa.map(({place, medal, wr}) => {
+    const isMedal = place <= 3;
+    const medalDisplay = isMedal ? medal : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--t3)">${place}</span>`;
+    const nameHtml = wr
+      ? `<div class="aa-name">${wr.n}</div><div class="aa-school">${wr.s}</div>`
+      : `<div class="aa-tbd">TBD</div>`;
+    return `<div class="aa-row place-${place}">
+      <div class="aa-medal">${medalDisplay}</div>
+      <div class="aa-info">${nameHtml}</div>
+    </div>`;
+  }).join('');
+
+  const aaPanel = `<div class="aa-panel">
+    <div class="aa-hdr">
+      <div class="aa-hdr-t">All-Americans</div>
+      <div class="aa-hdr-s">Top 8 Finishers</div>
+    </div>
+    ${rows}
+  </div>`;
+
+  return `<div class="cbox"><div>${champCard}</div>${aaPanel}</div>`;
 }
 
 function render() {
@@ -1165,7 +1238,7 @@ function render() {
     html += `</div></div><div class="rconn"></div>`;
   });
 
-  html += champBox(st.champion);
+  html += champBox(st);
   html += `</div>`;
 
   // ── CONSOLATION ──
