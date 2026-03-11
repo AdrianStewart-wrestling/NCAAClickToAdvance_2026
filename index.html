@@ -1614,12 +1614,12 @@ function doPrint() {
 }
 // ── Print page HTML builder ─────────────────────────────────
 
-// function pSlot(m, which) {
+ // function pSlot(m, which) {
  // const wr = m[which];
  // const isW = m.w === which;
-  const isL = m.w && m.w !== which;
-  if (!wr) return `<div class="ps tbd"><span class="pstbd">TBD</span></div>`;
-  const seed = wr.seed <= 16 ? wr.seed : '';
+ // const isL = m.w && m.w !== which;
+//  if (!wr) return `<div class="ps tbd"><span class="pstbd">TBD</span></div>`;
+//  const seed = wr.seed <= 16 ? wr.seed : '';
   // Use first initial + last name to save space
 //  const parts = wr.n.trim().split(/\s+/);
 //  const display = parts.length > 1 ? parts[0][0] + '. ' + parts.slice(1).join(' ') : parts[0];
@@ -1746,6 +1746,7 @@ function buildPrintPage(wt) {
 </script>
 </body>
 </html>
+
 
 
 
