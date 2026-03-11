@@ -226,9 +226,16 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
    PRINT STYLES  —  1 landscape page per weight
    ════════════════════════════════════════════════ */
 @media print {
-  @page { size: landscape; margin:8mm 8mm; }
+  @page { size: landscape; margin:6mm; }
   * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  html,body { height:auto !important; overflow:visible !important; background:#fff !important; color:#000 !important; }
+
+  html,body {
+    height:auto !important;
+    overflow:visible !important;
+    background:#fff !important;
+    color:#000 !important;
+  }
+
   .hdr,.wtabs,#area,#scores-view,#print-modal { display:none !important; }
   #print-root { display:block !important; }
 
@@ -237,69 +244,189 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
     break-inside: avoid;
     width:100%;
     overflow:hidden;
-    background:#fff; color:#000;
+    background:#fff;
+    color:#000;
     font-family:Arial,Helvetica,sans-serif;
-    /* zoom set via inline style by JS to fit content */
   }
   .print-page:last-child { break-after: avoid; }
 
-  /* psw: natural-size content container */
   .psw { display:block; }
 
   /* ── Page header ── */
-  .ph { display:flex; align-items:center; justify-content:space-between;
-        border-bottom:2.5px solid #111; padding-bottom:3px; margin-bottom:4px; }
-  .ph-title { font-size:11pt; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; line-height:1; }
-  .ph-sub   { font-size:6pt; color:#666; text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
-  .ph-wt    { font-size:28pt; font-weight:900; line-height:1; }
-  .ph-right { text-align:right; min-width:90px; }
-  .ph-clbl  { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .ph-cnm   { font-size:10pt; font-weight:900; line-height:1.2; }
-  .ph-csc   { font-size:6pt; color:#555; }
+  .ph {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:2px solid #111;
+    padding-bottom:2px;
+    margin-bottom:3px;
+  }
+  .ph-title {
+    font-size:10pt;
+    font-weight:900;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    line-height:1;
+  }
+  .ph-sub {
+    font-size:5.5pt;
+    color:#666;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-top:1px;
+  }
+  .ph-wt {
+    font-size:24pt;
+    font-weight:900;
+    line-height:1;
+  }
+  .ph-right {
+    text-align:right;
+    min-width:82px;
+  }
+  .ph-clbl {
+    font-size:5pt;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#888;
+  }
+  .ph-cnm {
+    font-size:9pt;
+    font-weight:900;
+    line-height:1.15;
+  }
+  .ph-csc {
+    font-size:5.5pt;
+    color:#555;
+  }
 
   /* ── Section labels ── */
-  .ps-lbl { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#999;
-            border-top:1px solid #e0e0e0; padding-top:2px; margin:3px 0; }
+  .ps-lbl {
+    font-size:5pt;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#999;
+    border-top:1px solid #e0e0e0;
+    padding-top:1px;
+    margin:2px 0;
+  }
 
   /* ── Bracket grid ── */
-  .pbg  { display:flex; align-items:flex-start; gap:0; }
-  .prc  { display:flex; flex-direction:column; }
-  .prh  { font-size:5pt; text-transform:uppercase; letter-spacing:1px; color:#aaa;
-          text-align:center; padding:0 2px 2px; white-space:nowrap; }
-  .prcn { width:8px; flex-shrink:0; }
+  .pbg {
+    display:flex;
+    align-items:flex-start;
+    gap:0;
+  }
+  .prc {
+    display:flex;
+    flex-direction:column;
+  }
+  .prh {
+    font-size:4.6pt;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    color:#aaa;
+    text-align:center;
+    padding:0 1px 1px;
+    white-space:nowrap;
+  }
+  .prcn {
+    width:5px;
+    flex-shrink:0;
+  }
 
   /* ── Match cards ── */
-  .pm   { border:1px solid #ccc; border-radius:1px; overflow:hidden; width:112px; flex-shrink:0; background:#fff; }
+  .pm {
+    border:1px solid #ccc;
+    border-radius:1px;
+    overflow:hidden;
+    width:98px;
+    flex-shrink:0;
+    background:#fff;
+  }
   .pm.champ-final { border:2px solid #111; }
   .pm.pigtail     { border:1px dashed #bbb; }
   .pm.consolation { border-color:#bbb; background:#fafafa; }
   .pm.place-match { border:1.5px solid #666; }
-  .pmd  { height:1px; background:#ddd; }
+  .pmd { height:1px; background:#ddd; }
 
   /* ── Wrestler slots ── */
-  .ps   { display:flex; align-items:center; padding:2px 3px; min-height:16px; }
-  .ps.win  { background:#e8f5e9; border-left:2.5px solid #2e7d32; }
+  .ps {
+    display:flex;
+    align-items:center;
+    padding:1px 2px;
+    min-height:14px;
+  }
+  .ps.win  { background:#e8f5e9; border-left:2px solid #2e7d32; }
   .ps.los  { opacity:0.4; }
   .ps.tbd  { opacity:0.2; }
-  .psseed  { font-size:5pt; color:#bbb; width:9px; flex-shrink:0; text-align:right; padding-right:1px; }
+
+  .psseed {
+    font-size:4.6pt;
+    color:#bbb;
+    width:8px;
+    flex-shrink:0;
+    text-align:right;
+    padding-right:1px;
+  }
   .ps.win .psseed { color:#2e7d32; }
-  .psname  { flex:1; font-size:5.5pt; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 2px; font-weight:500; }
-  .ps.win .psname  { font-weight:700; color:#1b5e20; }
-  .ps.los .psname  { text-decoration:line-through; color:#bbb; }
-  .pssch   { font-size:4.5pt; color:#bbb; flex-shrink:0; max-width:28px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pstbd   { font-size:5pt; color:#ccc; font-style:italic; }
+
+  .psname {
+    flex:1;
+    font-size:5pt;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding:0 1px;
+    font-weight:500;
+  }
+  .ps.win .psname { font-weight:700; color:#1b5e20; }
+  .ps.los .psname { text-decoration:line-through; color:#bbb; }
+
+  .pssch {
+    font-size:4.1pt;
+    color:#bbb;
+    flex-shrink:0;
+    max-width:24px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .pstbd {
+    font-size:4.8pt;
+    color:#ccc;
+    font-style:italic;
+  }
 
   /* ── Champion box ── */
-  .pchbox { display:flex; align-items:center; padding:0 4px; }
-  .pchcard { border:2px solid #111; border-radius:2px; padding:4px 6px; text-align:center; min-width:65px; background:#fffdf5; }
-  .pchcard .pcrown { font-size:12pt; margin-bottom:1px; line-height:1; }
-  .pchcard .pclbl  { font-size:4.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .pchcard .pcnm   { font-size:7pt; font-weight:900; text-transform:uppercase; line-height:1.3; }
-  .pchcard .pcsc   { font-size:5pt; color:#555; }
+  .pchbox {
+    display:flex;
+    align-items:center;
+    padding:0 3px;
+  }
+  .pchcard {
+    border:2px solid #111;
+    border-radius:2px;
+    padding:3px 5px;
+    text-align:center;
+    min-width:58px;
+    background:#fffdf5;
+  }
+  .pchcard .pcrown { font-size:10pt; margin-bottom:1px; line-height:1; }
+  .pchcard .pclbl  { font-size:4.2pt; text-transform:uppercase; letter-spacing:1.5px; color:#888; }
+  .pchcard .pcnm   { font-size:6.3pt; font-weight:900; text-transform:uppercase; line-height:1.2; }
+  .pchcard .pcsc   { font-size:4.6pt; color:#555; }
   .pchcard.empty .pcnm { color:#aaa; font-weight:400; }
 
   /* ── Place labels ── */
-  .ppl-lbl { font-size:4.5pt; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:1px; }
+  .ppl-lbl {
+    font-size:4.2pt;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#888;
+    margin-bottom:0;
+  }
 }
 
 </style>
@@ -1577,15 +1704,13 @@ function doPrint() {
     `<div class="print-page" id="pp-${wt}"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
   ).join('');
 
-  // Measure off-screen in a wide unconstrained sandbox
-  root.style.cssText = 'display:block;position:fixed;top:-99999px;left:0;width:4000px;height:auto;';
+  // Measure in a width closer to actual print width for more realistic scaling
+  root.style.cssText = 'display:block;position:fixed;top:-99999px;left:0;width:1100px;height:auto;';
 
-  // Landscape A4 printable area at 96dpi (minus 8mm margins each side)
-  // A4 landscape = 297mm x 210mm; minus 16mm W margins, 16mm H margins
-  // 1mm = 3.7795px at 96dpi
+  // US Letter landscape printable area approximation at 96dpi with 6mm margins
   const MM = 3.7795;
-  const PAGE_W = (297 - 16) * MM;  // ~1061px
-  const PAGE_H = (210 - 16) * MM;  // ~733px
+  const PAGE_W = (279.4 - 12) * MM;
+  const PAGE_H = (215.9 - 12) * MM;
 
   requestAnimationFrame(() => requestAnimationFrame(() => {
     selected.forEach(wt => {
@@ -1597,8 +1722,7 @@ function doPrint() {
       const H = psw.scrollHeight;
       if (!W || !H) return;
 
-      // Apply zoom to the page div so the browser scales everything uniformly for print
-      const zoom = Math.min(PAGE_W / W, PAGE_H / H);
+      const zoom = Math.min(PAGE_W / W, PAGE_H / H, 1);
       page.style.zoom = zoom;
     });
 
@@ -1666,11 +1790,10 @@ function pChampCard(champ) {
 
 function buildPrintPage(wt) {
   const st = getS(wt);
-  const MH = 34, GAP = 2;
+  const MH = 30, GAP = 1;
   const RN  = ['Rd 1','Rd 16','QF','SF','Final'];
   const CN  = ['Con 1','Con 2','Con 3','Con 4','Con Qtrs','Con SF'];
 
-  // ── Header ──
   let h = `<div class="ph">
     <div>
       <div class="ph-title">NCAA Wrestling Championships</div>
@@ -1685,7 +1808,6 @@ function buildPrintPage(wt) {
     </div>
   </div>`;
 
-  // ── Championship bracket ──
   h += `<div class="ps-lbl">Championship Bracket</div>`;
   h += `<div class="pbg">`;
 
@@ -1693,7 +1815,7 @@ function buildPrintPage(wt) {
   h += `<div class="prc"><div class="prh">Pigtail</div><div>${pMatch(st.pigtail,'pigtail')}</div></div>`;
   h += `<div class="prcn"></div>`;
 
-  // Champ rounds
+  // Championship rounds
   st.champ.forEach((round, ri) => {
     const sp = Math.pow(2, ri);
     h += `<div class="prc"><div class="prh">${RN[ri]}</div><div>`;
@@ -1705,47 +1827,47 @@ function buildPrintPage(wt) {
   });
 
   h += pChampCard(st.champion);
-  h += `</div>`; // end champ pbg
+  h += `</div>`;
 
-  // ── Consolation bracket ──
   h += `<div class="ps-lbl">Consolation Bracket</div>`;
   h += `<div class="pbg" style="align-items:flex-start">`;
-  // Spacer aligns under champ pigtail col only (no connector spacer needed)
-  h += `<div style="width:${110+8}px;flex-shrink:0"></div>`;
 
-  // Con Pigtail col
+  // Reduced spacer to tighten fit
+  h += `<div style="width:100px;flex-shrink:0"></div>`;
+
+  // Con pigtail
   const cpData = st.conPigtail.a || st.conPigtail.b;
   h += `<div class="prc"><div class="prh">Con Pigtail</div><div>`;
-  h += cpData ? pMatch(st.conPigtail,'consolation') : `<div style="min-width:110px;min-height:${MH}px"></div>`;
+  h += cpData ? pMatch(st.conPigtail,'consolation') : `<div style="min-width:98px;min-height:${MH}px"></div>`;
   h += `</div></div><div class="prcn"></div>`;
 
   st.con.forEach((round, ri) => {
     const anyData = round.some(m => m.a || m.b);
     h += `<div class="prc"><div class="prh">${CN[ri]}</div><div style="display:flex;flex-direction:column;gap:${GAP}px">`;
     if (anyData) {
-     round.forEach(m => {
-  h += `<div>${pMatch(m,'consolation')}</div>`;
-});
+      round.forEach(m => {
+        h += `<div>${pMatch(m,'consolation')}</div>`;
+      });
     } else {
-      h += `<div style="min-width:110px;min-height:${MH}px"></div>`;
+      h += `<div style="min-width:98px;min-height:${MH}px"></div>`;
     }
     h += `</div></div><div class="prcn"></div>`;
   });
 
-  // Place matches
-  h += `<div class="prc"><div class="prh">Places</div><div style="display:flex;flex-direction:column;gap:4px">`;
+  h += `<div class="prc"><div class="prh">Places</div><div style="display:flex;flex-direction:column;gap:3px">`;
   [{m:st.place3,lbl:'3rd Place'},{m:st.place5,lbl:'5th Place'},{m:st.place7,lbl:'7th Place'}]
     .forEach(({m,lbl}) => {
       if (m.a || m.b) h += `<div><div class="ppl-lbl">${lbl}</div>${pMatch(m,'place-match')}</div>`;
     });
   h += `</div></div>`;
 
-  h += `</div>`; // end con pbg
+  h += `</div>`;
   return h;
 }
 </script>
 </body>
 </html>
+
 
 
 
