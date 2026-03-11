@@ -1459,9 +1459,11 @@ function calcTeamScores() {
 
     // champ rounds 0-3 (R1 through SF) — each win = 1 pt
     for (let ri = 0; ri < 5; ri++) {
-      st.champ[ri].forEach(m => {
-        if (m.w) champWin(m[m.w]);
-      });
+      // Championship round wins (each = 1 pt) — Finals excluded
+st.champ.forEach((round, ri) => {
+  if (ri === 4) return; // Finals win = placement points only
+  round.forEach(m => { if (m.w) champWin(m[m.w]); });
+});
     }
 
     // Consolation wins = 0.5 each
@@ -1472,9 +1474,9 @@ function calcTeamScores() {
       });
     });
     // Place match wins
-    if (st.place3.w) conWin(st.place3[st.place3.w]);
-    if (st.place5.w) conWin(st.place5[st.place5.w]);
-    if (st.place7.w) conWin(st.place7[st.place7.w]);
+    // if (st.place3.w) conWin(st.place3[st.place3.w]);
+    // if (st.place5.w) conWin(st.place5[st.place5.w]);
+    // if (st.place7.w) conWin(st.place7[st.place7.w]);
 
     // Placement points from All-Americans
     const aa = getAllAmericans(st);
@@ -1729,4 +1731,5 @@ function buildPrintPage(wt) {
 </script>
 </body>
 </html>
+
 
