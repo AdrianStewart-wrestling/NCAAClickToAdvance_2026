@@ -35,6 +35,58 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 .wtab{display:flex;align-items:center;padding:0 14px;cursor:pointer;border:none;background:none;color:var(--t3);font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
 .wtab:hover{color:var(--t2)}
 .wtab.on{color:var(--gold);border-bottom-color:var(--gold)}
+.wtab.scores-tab{color:var(--t3);border-left:1px solid var(--b1);margin-left:8px;padding-left:20px;font-size:16px;letter-spacing:1.5px}
+.wtab.scores-tab.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* SCORES VIEW */
+#scores-view{flex:1;overflow:auto;padding:14px 18px 24px;display:none;flex-direction:column;gap:0}
+#scores-view.active{display:flex}
+#scores-view::-webkit-scrollbar{width:6px;height:6px}
+#scores-view::-webkit-scrollbar-track{background:var(--bg)}
+#scores-view::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
+
+.scores-wrap{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.scores-main{flex:1;min-width:520px}
+.scores-key{min-width:200px;flex-shrink:0}
+
+.scores-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--t1);margin-bottom:4px}
+.scores-sub{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+
+.lb-table{width:100%;border-collapse:collapse;background:var(--s1);border:1px solid var(--b1);border-radius:5px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.lb-table thead tr{background:linear-gradient(90deg,#1a1f2e,#2c2408);border-bottom:2px solid var(--gold)}
+.lb-table thead th{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);padding:7px 10px;text-align:left;white-space:nowrap}
+.lb-table thead th.num{text-align:right}
+.lb-table tbody tr{border-bottom:1px solid var(--b1);transition:background .1s}
+.lb-table tbody tr:last-child{border-bottom:none}
+.lb-table tbody tr:hover{background:var(--s3)}
+.lb-table tbody tr.rank-1{background:var(--gold-bg)}
+.lb-table tbody tr.rank-2{background:rgba(150,150,160,.06)}
+.lb-table tbody tr.rank-3{background:rgba(150,100,50,.05)}
+.lb-td-rank{font-family:'Bebas Neue',sans-serif;font-size:20px;width:36px;padding:6px 10px;color:var(--t3);text-align:center}
+.lb-table tbody tr.rank-1 .lb-td-rank{color:var(--gold)}
+.lb-table tbody tr.rank-2 .lb-td-rank{color:#6b7280}
+.lb-table tbody tr.rank-3 .lb-td-rank{color:#92400e}
+.lb-td-school{font-size:12px;font-weight:600;color:var(--t1);padding:6px 8px}
+.lb-td-pts{font-family:'Bebas Neue',sans-serif;font-size:18px;text-align:right;padding:6px 12px;color:var(--t1)}
+.lb-table tbody tr.rank-1 .lb-td-pts{color:var(--gold)}
+.lb-td-adv{font-size:10px;text-align:right;padding:6px 8px;color:var(--t3);font-family:'Barlow Condensed',sans-serif;white-space:nowrap}
+.lb-td-place{font-size:10px;text-align:right;padding:6px 10px;color:var(--t3);font-family:'Barlow Condensed',sans-serif;white-space:nowrap}
+.lb-td-aa{font-size:10px;padding:6px 10px;color:var(--t2);font-family:'Barlow Condensed',sans-serif;white-space:nowrap;text-align:right}
+.lb-bar-wrap{width:80px;padding:6px 10px}
+.lb-bar{height:6px;background:var(--b1);border-radius:3px;overflow:hidden}
+.lb-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;transition:width .3s ease}
+.lb-table tbody tr.rank-1 .lb-bar-fill{background:linear-gradient(90deg,var(--gold),#f0c040)}
+
+.key-card{background:var(--s1);border:1px solid var(--b1);border-radius:5px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.key-hdr{background:linear-gradient(135deg,#1a1f2e,#2c2408);padding:7px 12px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--gold2)}
+.key-row{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;border-bottom:1px solid var(--b1);font-size:11px}
+.key-row:last-child{border-bottom:none}
+.key-lbl{color:var(--t2)}
+.key-val{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--t1)}
+.key-val.gold{color:var(--gold)}
+.key-sep{height:1px;background:var(--b1);margin:4px 0}
+
+.scores-note{font-size:10px;color:var(--t3);margin-top:10px;font-style:italic}
 
 /* MAIN SCROLL AREA */
 .area{flex:1;overflow:auto;padding:14px 18px 24px;display:flex;flex-direction:column;gap:0}
@@ -174,7 +226,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
    PRINT STYLES  —  1 landscape page per weight
    ════════════════════════════════════════════════ */
 @media print {
-  @page { size: landscape; margin:8mm 8mm; }
+  @page { size: landscape; margin:5mm 6mm; }
   * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
   html,body { height:auto !important; overflow:visible !important; background:#fff !important; color:#000 !important; }
   .hdr,.wtabs,#area,#print-modal { display:none !important; }
@@ -183,41 +235,47 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   .print-page {
     break-after: page;
     break-inside: avoid;
-    width:100%;
+    width:267mm;
+    height:182mm;
     overflow:hidden;
     background:#fff; color:#000;
     font-family:Arial,Helvetica,sans-serif;
-    /* zoom set via inline style by JS to fit content */
+    position:relative;
+    display:flex;
+    flex-direction:column;
   }
   .print-page:last-child { break-after: avoid; }
 
-  /* psw: natural-size content container */
-  .psw { display:block; }
+  /* psw: the inner content wrapper — scale to fit via JS */
+  .psw {
+    position:absolute; top:0; left:0;
+    transform-origin:top left;
+  }
 
   /* ── Page header ── */
   .ph { display:flex; align-items:center; justify-content:space-between;
-        border-bottom:2.5px solid #111; padding-bottom:3px; margin-bottom:4px; }
-  .ph-title { font-size:11pt; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; line-height:1; }
-  .ph-sub   { font-size:6pt; color:#666; text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
-  .ph-wt    { font-size:28pt; font-weight:900; line-height:1; }
+        border-bottom:2.5px solid #111; padding-bottom:2px; margin-bottom:3px; }
+  .ph-title { font-size:10pt; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; line-height:1; }
+  .ph-sub   { font-size:5.5pt; color:#666; text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
+  .ph-wt    { font-size:26pt; font-weight:900; line-height:1; }
   .ph-right { text-align:right; min-width:90px; }
-  .ph-clbl  { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .ph-cnm   { font-size:10pt; font-weight:900; line-height:1.2; }
-  .ph-csc   { font-size:6pt; color:#555; }
+  .ph-clbl  { font-size:5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
+  .ph-cnm   { font-size:9pt; font-weight:900; line-height:1.2; }
+  .ph-csc   { font-size:5.5pt; color:#555; }
 
   /* ── Section labels ── */
-  .ps-lbl { font-size:5.5pt; text-transform:uppercase; letter-spacing:2px; color:#999;
-            border-top:1px solid #e0e0e0; padding-top:2px; margin:3px 0; }
+  .ps-lbl { font-size:5pt; text-transform:uppercase; letter-spacing:2px; color:#999;
+            border-top:1px solid #e0e0e0; padding-top:1.5px; margin:2px 0; }
 
   /* ── Bracket grid ── */
   .pbg  { display:flex; align-items:flex-start; gap:0; }
   .prc  { display:flex; flex-direction:column; }
-  .prh  { font-size:5pt; text-transform:uppercase; letter-spacing:1px; color:#aaa;
+  .prh  { font-size:4.5pt; text-transform:uppercase; letter-spacing:1px; color:#aaa;
           text-align:center; padding:0 2px 2px; white-space:nowrap; }
-  .prcn { width:8px; flex-shrink:0; }
+  .prcn { width:7px; flex-shrink:0; }
 
   /* ── Match cards ── */
-  .pm   { border:1px solid #ccc; border-radius:1px; overflow:hidden; width:112px; flex-shrink:0; background:#fff; }
+  .pm   { border:1px solid #ccc; border-radius:1px; overflow:hidden; width:100px; flex-shrink:0; background:#fff; }
   .pm.champ-final { border:2px solid #111; }
   .pm.pigtail     { border:1px dashed #bbb; }
   .pm.consolation { border-color:#bbb; background:#fafafa; }
@@ -225,29 +283,29 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   .pmd  { height:1px; background:#ddd; }
 
   /* ── Wrestler slots ── */
-  .ps   { display:flex; align-items:center; padding:2px 3px; min-height:16px; }
+  .ps   { display:flex; align-items:center; padding:1px 3px; min-height:13px; }
   .ps.win  { background:#e8f5e9; border-left:2.5px solid #2e7d32; }
   .ps.los  { opacity:0.4; }
   .ps.tbd  { opacity:0.2; }
-  .psseed  { font-size:5pt; color:#bbb; width:9px; flex-shrink:0; text-align:right; padding-right:1px; }
+  .psseed  { font-size:4.5pt; color:#bbb; width:8px; flex-shrink:0; text-align:right; padding-right:1px; }
   .ps.win .psseed { color:#2e7d32; }
-  .psname  { flex:1; font-size:5.5pt; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 2px; font-weight:500; }
+  .psname  { flex:1; font-size:5pt; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 2px; font-weight:500; }
   .ps.win .psname  { font-weight:700; color:#1b5e20; }
   .ps.los .psname  { text-decoration:line-through; color:#bbb; }
-  .pssch   { font-size:4.5pt; color:#bbb; flex-shrink:0; max-width:28px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pstbd   { font-size:5pt; color:#ccc; font-style:italic; }
+  .pssch   { font-size:4pt; color:#bbb; flex-shrink:0; max-width:26px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .pstbd   { font-size:4.5pt; color:#ccc; font-style:italic; }
 
   /* ── Champion box ── */
   .pchbox { display:flex; align-items:center; padding:0 4px; }
-  .pchcard { border:2px solid #111; border-radius:2px; padding:4px 6px; text-align:center; min-width:65px; background:#fffdf5; }
-  .pchcard .pcrown { font-size:12pt; margin-bottom:1px; line-height:1; }
-  .pchcard .pclbl  { font-size:4.5pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
-  .pchcard .pcnm   { font-size:7pt; font-weight:900; text-transform:uppercase; line-height:1.3; }
-  .pchcard .pcsc   { font-size:5pt; color:#555; }
+  .pchcard { border:2px solid #111; border-radius:2px; padding:3px 5px; text-align:center; min-width:60px; background:#fffdf5; }
+  .pchcard .pcrown { font-size:10pt; margin-bottom:1px; line-height:1; }
+  .pchcard .pclbl  { font-size:4pt; text-transform:uppercase; letter-spacing:2px; color:#888; }
+  .pchcard .pcnm   { font-size:6.5pt; font-weight:900; text-transform:uppercase; line-height:1.3; }
+  .pchcard .pcsc   { font-size:4.5pt; color:#555; }
   .pchcard.empty .pcnm { color:#aaa; font-weight:400; }
 
   /* ── Place labels ── */
-  .ppl-lbl { font-size:4.5pt; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:1px; }
+  .ppl-lbl { font-size:4pt; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:1px; }
 }
 
 </style>
@@ -270,6 +328,47 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 <div class="area" id="area">
   <div class="tip"><div class="tip-dot"></div>Click a wrestler's name to advance them — their opponent automatically drops to the consolation bracket below</div>
   <div id="bkt"></div>
+</div>
+
+<!-- Scores View -->
+<div id="scores-view">
+  <div class="scores-wrap">
+    <div class="scores-main">
+      <div class="scores-title">Team Standings</div>
+      <div class="scores-sub">Live · Top 15 Teams · 2026 NCAA Division I Wrestling</div>
+      <table class="lb-table" id="lb-table">
+        <thead>
+          <tr>
+            <th style="text-align:center">#</th>
+            <th>School</th>
+            <th class="num">Total</th>
+            <th class="num">Adv Pts</th>
+            <th class="num">Place Pts</th>
+            <th class="num">AA Count</th>
+            <th style="min-width:90px"></th>
+          </tr>
+        </thead>
+        <tbody id="lb-body"></tbody>
+      </table>
+      <div class="scores-note" id="scores-note"></div>
+    </div>
+    <div class="scores-key">
+      <div class="key-card">
+        <div class="key-hdr">📊 Scoring Key</div>
+        <div class="key-row"><span class="key-lbl">🥇 1st Place</span><span class="key-val gold">16 pts</span></div>
+        <div class="key-row"><span class="key-lbl">🥈 2nd Place</span><span class="key-val">12 pts</span></div>
+        <div class="key-row"><span class="key-lbl">🥉 3rd Place</span><span class="key-val">10 pts</span></div>
+        <div class="key-row"><span class="key-lbl">4th Place</span><span class="key-val">9 pts</span></div>
+        <div class="key-row"><span class="key-lbl">5th Place</span><span class="key-val">7 pts</span></div>
+        <div class="key-row"><span class="key-lbl">6th Place</span><span class="key-val">6 pts</span></div>
+        <div class="key-row"><span class="key-lbl">7th Place</span><span class="key-val">4 pts</span></div>
+        <div class="key-row"><span class="key-lbl">8th Place</span><span class="key-val">3 pts</span></div>
+        <div style="height:6px;background:var(--b1);margin:0"></div>
+        <div class="key-row"><span class="key-lbl">Champ Win</span><span class="key-val">+1 pt</span></div>
+        <div class="key-row"><span class="key-lbl">Con Win</span><span class="key-val">+0.5 pt</span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Print modal -->
@@ -381,7 +480,7 @@ const FIELDS = {
 {n:"Luke Stanich ",s:"Lehigh"},        // 5
 {n:"Vince Cornella ",s:"Cornell"},        // 6
 {n:"Nasir Bailey ",s:"Iowa"},        // 7
-{n:"Joey Olivieri  ",s:"Rutgers"},        // 8
+{n:"Joey Olivieri  ",s:"Rutgers"},        // 8
 {n:"Vance VomBaur ",s:"Minnesota"},        // 9
 {n:"Jack Consiglio ",s:"Stanford"},        // 10
 {n:"Luke Simcox ",s:"North Carolina"},        // 11
@@ -451,7 +550,7 @@ const FIELDS = {
 {n:"Vincent Zerban ",s:"Iowa State"},        // 5
 {n:"Meyer Shapiro ",s:"Cornell"},        // 6
 {n:"Kannon Webster ",s:"Illinois"},        // 7
-{n:"Brandon Cannon  ",s:"Ohio State"},        // 8
+{n:"Brandon Cannon  ",s:"Ohio State"},        // 8
 {n:"Ty Watters ",s:"West Virginia"},        // 9
 {n:"Jude Swisher ",s:"Penn"},        // 10
 {n:"Daniel Cardenas ",s:"Stanford"},        // 11
@@ -507,7 +606,7 @@ const FIELDS = {
 {n:"Sean Seefeldt ",s:"Penn"},        // 26
 {n:"Mac Church ",s:"Virginia Tech"},        // 27
 {n:"Dylan Elmore ",s:"Navy"},        // 28
-{n:"Chris Earnest  ",s:"Kent State"},        // 29
+{n:"Chris Earnest  ",s:"Kent State"},        // 29
 {n:"Brock Woodcock ",s:"SIUE"},        // 30
 {n:"Marcus Espinoza-Owens ",s:"SD State"},        // 31
 {n:"Cody Walsh ",s:"Drexel"},        // 32
@@ -568,7 +667,7 @@ const FIELDS = {
 {n:"Rylan Rogers ",s:"Lehigh"},        // 17
 {n:"Jaden Bullock ",s:"Virginia Tech"},        // 18
 {n:"Jake Dailey ",s:"North Carolina"},        // 19
-{n:"Ian Bush  ",s:"West Virginia"},        // 20
+{n:"Ian Bush  ",s:"West Virginia"},        // 20
 {n:"Caleb Campos ",s:"American"},        // 21
 {n:"Abraham Wojcikiewicz ",s:"Stanford"},        // 22
 {n:"Chase Kranitz ",s:"Pittsburgh"},        // 23
@@ -626,7 +725,7 @@ const FIELDS = {
 {n:"Nick Feldman ",s:"Ohio State"},        // 5
 {n:"Ben Kueter ",s:"Iowa"},        // 6
 {n:"Cole Mirasola ",s:"Penn State"},        // 7
-{n:"Konner Doucet  ",s:"OK State"},        // 8
+{n:"Konner Doucet  ",s:"OK State"},        // 8
 {n:"Braxton Amos ",s:"Wisconsin"},        // 9
 {n:"David Szuba ",s:"Arizona State"},        // 10
 {n:"Nathan Taylor ",s:"Lehigh"},        // 11
@@ -653,7 +752,7 @@ const FIELDS = {
 {n:"Luke Rasmussen ",s:"SD State"},        // 32
 {n:"Stephen Monchery ",s:"App State"},        // 33 — pigtail
   ],
-};
+}
 
 // ─── BRACKET PAIRING ───────────────────────────────────────────────
 // 33-man field: Pigtail = seed 32 vs seed 33.
@@ -840,6 +939,7 @@ function pick(wt, bracket, ri, mi, slot) {
 
   applyPick(st, bracket, ri, mi, slot);
   render();
+  if (showScores) renderScores();
 }
 
 // swap: change the winner of an already-decided match.
@@ -1066,14 +1166,39 @@ const CHAMP_RND_NAMES = ['Round 1','Rd of 16','Quarterfinals','Semifinals','Fina
 const CON_RND_NAMES   = ['Con. Rd 1','Con. Rd 2','Con. Rd 3','Con. Rd 4','Con. Qtrs','Con. Semis'];
 
 function renderWeightTabs() {
-  document.getElementById('wtabs').innerHTML = WLIST.map(w=>
-    `<button class="wtab ${w===CW?'on':''}" onclick="switchW(${w})">${w}</button>`
+  const weightBtns = WLIST.map(w=>
+    `<button class="wtab ${w===CW && !showScores?'on':''}" onclick="switchW(${w})">${w}</button>`
   ).join('');
+  const scoreBtn = `<button class="wtab scores-tab ${showScores?'on':''}" onclick="switchScores()">🏆 Scores</button>`;
+  document.getElementById('wtabs').innerHTML = weightBtns + scoreBtn;
 }
 
-function switchW(w) { CW=w; renderWeightTabs(); render(); }
+let showScores = false;
 
-function resetBracket() { delete states[CW]; delete pickLog[CW]; renderWeightTabs(); render(); }
+function switchW(w) {
+  CW = w;
+  showScores = false;
+  document.getElementById('area').style.display = 'flex';
+  document.getElementById('scores-view').classList.remove('active');
+  renderWeightTabs();
+  render();
+}
+
+function switchScores() {
+  showScores = true;
+  document.getElementById('area').style.display = 'none';
+  document.getElementById('scores-view').classList.add('active');
+  renderWeightTabs();
+  renderScores();
+}
+
+function resetBracket() {
+  delete states[CW];
+  delete pickLog[CW];
+  renderWeightTabs();
+  render();
+  if (showScores) renderScores();
+}
 
 // Build a wrestler slot HTML
 function slotHTML(m, which, bkt, ri, mi) {
@@ -1296,6 +1421,131 @@ function render() {
   document.getElementById('bkt').innerHTML = html;
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// SCORING ENGINE
+// ═══════════════════════════════════════════════════════════════════
+
+const PLACE_PTS = {1:16, 2:12, 3:10, 4:9, 5:7, 6:6, 7:4, 8:3};
+
+function calcTeamScores() {
+  // schoolName → { advPts, placePts, total, aaCount, placements[] }
+  const teams = {};
+
+  function addTeam(school) {
+    if (!teams[school]) teams[school] = { advPts:0, placePts:0, total:0, aaCount:0, placements:[] };
+    return teams[school];
+  }
+
+  function champWin(wr) {
+    if (!wr) return;
+    const t = addTeam(wr.s);
+    t.advPts += 1;
+  }
+  function conWin(wr) {
+    if (!wr) return;
+    const t = addTeam(wr.s);
+    t.advPts += 0.5;
+  }
+  function placePts(wr, place) {
+    if (!wr) return;
+    const t = addTeam(wr.s);
+    const pts = PLACE_PTS[place] || 0;
+    t.placePts += pts;
+    t.aaCount++;
+    t.placements.push({place, pts, wt:'?'});
+  }
+
+  WLIST.forEach(wt => {
+    if (!states[wt]) return;
+    const st = states[wt];
+
+    // Championship advancement wins
+    // pigtail winner
+    if (st.pigtail.w) champWin(st.pigtail[st.pigtail.w]);
+
+    // champ rounds 0-3 (R1 through SF) — each win = 1 pt
+    for (let ri = 0; ri < 5; ri++) {
+      st.champ[ri].forEach(m => {
+        if (m.w) champWin(m[m.w]);
+      });
+    }
+
+    // Consolation wins = 0.5 each
+    if (st.conPigtail.w) conWin(st.conPigtail[st.conPigtail.w]);
+    st.con.forEach(round => {
+      round.forEach(m => {
+        if (m.w) conWin(m[m.w]);
+      });
+    });
+    // Place match wins
+    if (st.place3.w) conWin(st.place3[st.place3.w]);
+    if (st.place5.w) conWin(st.place5[st.place5.w]);
+    if (st.place7.w) conWin(st.place7[st.place7.w]);
+
+    // Placement points from All-Americans
+    const aa = getAllAmericans(st);
+    aa.forEach(({place, wr}) => {
+      if (wr) placePts(wr, place);
+    });
+  });
+
+  // Compute totals
+  Object.values(teams).forEach(t => {
+    t.total = t.advPts + t.placePts;
+  });
+
+  // Sort by total desc, then placePts desc, then aaCount desc
+  return Object.entries(teams)
+    .map(([school, d]) => ({school, ...d}))
+    .sort((a, b) => b.total - a.total || b.placePts - a.placePts || b.aaCount - a.aaCount);
+}
+
+function renderScores() {
+  const data = calcTeamScores();
+  const top15 = data.slice(0, 15);
+  const maxPts = top15.length ? top15[0].total : 1;
+
+  // Count total matches decided so far
+  let matchCount = 0;
+  WLIST.forEach(wt => {
+    if (!states[wt]) return;
+    const st = states[wt];
+    const allMatches = [st.pigtail, st.conPigtail, ...st.champ.flat(), ...st.con.flat(), st.place3, st.place5, st.place7];
+    allMatches.forEach(m => { if (m && m.w) matchCount++; });
+  });
+
+  const body = document.getElementById('lb-body');
+  if (!top15.length) {
+    body.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No results yet — advance wrestlers in the bracket to see team scores</td></tr>`;
+    document.getElementById('scores-note').textContent = '';
+    return;
+  }
+
+  body.innerHTML = top15.map((t, i) => {
+    const rank = i + 1;
+    const barPct = maxPts > 0 ? (t.total / maxPts * 100).toFixed(1) : 0;
+    const advStr = t.advPts > 0 ? `+${fmt(t.advPts)}` : '—';
+    const placeStr = t.placePts > 0 ? fmt(t.placePts) : '—';
+    const aaStr = t.aaCount > 0 ? `${t.aaCount} AA` : '—';
+    return `<tr class="rank-${rank}">
+      <td class="lb-td-rank">${rank}</td>
+      <td class="lb-td-school">${t.school}</td>
+      <td class="lb-td-pts">${fmt(t.total)}</td>
+      <td class="lb-td-adv">${advStr}</td>
+      <td class="lb-td-place">${placeStr}</td>
+      <td class="lb-td-aa">${aaStr}</td>
+      <td class="lb-bar-wrap"><div class="lb-bar"><div class="lb-bar-fill" style="width:${barPct}%"></div></div></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('scores-note').textContent =
+    `${matchCount} match${matchCount===1?'':'es'} decided across ${WLIST.filter(w=>states[w]).length} weight class${WLIST.filter(w=>states[w]).length===1?'':'es'} · Scores update live as you advance wrestlers`;
+}
+
+function fmt(n) {
+  return n % 1 === 0 ? n.toString() : n.toFixed(1);
+}
+
 // ─── INIT ───
 renderWeightTabs();
 render();
@@ -1328,42 +1578,51 @@ function doPrint() {
 
   const root = document.getElementById('print-root');
   root.innerHTML = selected.map(wt =>
-    `<div class="print-page" id="pp-${wt}"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
+    `<div class="print-page"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
   ).join('');
 
-  // Measure off-screen in a wide unconstrained sandbox
-  root.style.cssText = 'display:block;position:fixed;top:-99999px;left:0;width:4000px;height:auto;';
+  // Measure content in an off-screen sandbox at a known width
+  root.style.display = 'block';
+  root.style.position = 'fixed';
+  root.style.top = '-99999px';
+  root.style.left = '0';
+  root.style.width = '3000px';
+  root.style.height = 'auto';
 
-  // Landscape A4 printable area at 96dpi (minus 8mm margins each side)
-  // A4 landscape = 297mm x 210mm; minus 16mm W margins, 16mm H margins
-  // 1mm = 3.7795px at 96dpi
+  // Page printable area: 267mm x 182mm  (landscape A4 minus 5mm/6mm margins)
+  // At 96dpi: 1mm = 3.7795px
   const MM = 3.7795;
-  const PAGE_W = (297 - 16) * MM;  // ~1061px
-  const PAGE_H = (210 - 16) * MM;  // ~733px
+  const PAGE_W_PX = 267 * MM;
+  const PAGE_H_PX = 182 * MM;
 
   requestAnimationFrame(() => requestAnimationFrame(() => {
     selected.forEach(wt => {
-      const psw = document.getElementById(`psw-${wt}`);
-      const page = document.getElementById(`pp-${wt}`);
-      if (!psw || !page) return;
+      const wrap = document.getElementById(`psw-${wt}`);
+      if (!wrap) return;
 
-      const W = psw.scrollWidth;
-      const H = psw.scrollHeight;
-      if (!W || !H) return;
+      const naturalW = wrap.scrollWidth;
+      const naturalH = wrap.scrollHeight;
 
-      const zoom = Math.min(PAGE_W / W, PAGE_H / H);
-      // Apply zoom to the page div so the browser scales everything uniformly for print
-      page.style.zoom = zoom;
+      // Scale to fit within printable area, never exceed 1.0 upward unless tiny
+      const scale = Math.min(PAGE_W_PX / naturalW, PAGE_H_PX / naturalH, 1.05);
+      wrap.style.transform = `scale(${scale})`;
+      wrap.style.transformOrigin = 'top left';
+
+      // Center within the page box
+      const scaledW = naturalW * scale;
+      const scaledH = naturalH * scale;
+      wrap.style.left = `${Math.max(0, (PAGE_W_PX - scaledW) / 2)}px`;
+      wrap.style.top  = `${Math.max(0, (PAGE_H_PX - scaledH) / 2)}px`;
     });
 
     setTimeout(() => {
-      root.style.cssText = 'display:block;';
+      root.style.position = '';
+      root.style.top = '';
+      root.style.left = '';
+      root.style.width = '';
       window.print();
-      setTimeout(() => {
-        root.style.cssText = 'display:none;';
-        root.innerHTML = '';
-      }, 1500);
-    }, 250);
+      setTimeout(() => { root.style.display = 'none'; root.innerHTML = ''; }, 1500);
+    }, 200);
   }));
 }
 // ── Print page HTML builder ─────────────────────────────────
@@ -1405,7 +1664,7 @@ function pChampCard(champ) {
 
 function buildPrintPage(wt) {
   const st = getS(wt);
-  const MH = 34, GAP = 2;
+  const MH = 28, GAP = 2;
   const RN  = ['Rd 1','Rd 16','QF','SF','Final'];
   const CN  = ['Con 1','Con 2','Con 3','Con 4','Con SF'];
 
@@ -1413,7 +1672,7 @@ function buildPrintPage(wt) {
   let h = `<div class="ph">
     <div>
       <div class="ph-title">NCAA Wrestling Championships</div>
-      <div class="ph-sub">Division I · Kansas City, MO · March 21–23, 2024</div>
+      <div class="ph-sub">Division I · Cleveland, OH · March 19–21, 2026</div>
     </div>
     <div class="ph-wt">${wt} lbs</div>
     <div class="ph-right">
