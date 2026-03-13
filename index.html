@@ -37,6 +37,8 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 .wtab.on{color:var(--gold);border-bottom-color:var(--gold)}
 .wtab.scores-tab{color:var(--t3);border-left:1px solid var(--b1);margin-left:8px;padding-left:20px;font-size:16px;letter-spacing:1.5px}
 .wtab.scores-tab.on{color:var(--gold);border-bottom-color:var(--gold)}
+.wtab.aa-tab{color:var(--t3);border-left:1px solid var(--b1);padding-left:20px;font-size:16px;letter-spacing:1.5px}
+.wtab.aa-tab.on{color:var(--gold);border-bottom-color:var(--gold)}
 
 /* SCORES VIEW */
 #scores-view{flex:1;overflow:auto;padding:14px 18px 24px;display:none;flex-direction:column;gap:0}
@@ -87,6 +89,49 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 .key-sep{height:1px;background:var(--b1);margin:4px 0}
 
 .scores-note{font-size:10px;color:var(--t3);margin-top:10px;font-style:italic}
+
+/* ══════════════════════════════════════════
+   ALL-AMERICANS VIEW
+   ══════════════════════════════════════════ */
+#aa-view{flex:1;overflow:auto;padding:14px 18px 24px;display:none;flex-direction:column;gap:0}
+#aa-view.active{display:flex}
+#aa-view::-webkit-scrollbar{width:6px;height:6px}
+#aa-view::-webkit-scrollbar-track{background:var(--bg)}
+#aa-view::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
+
+.aa-view-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--t1);margin-bottom:2px}
+.aa-view-sub{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+
+/* Row of weight-class cards */
+.aa-row-grid{display:flex;gap:10px;flex-wrap:nowrap;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
+.aa-row-grid::-webkit-scrollbar{height:4px}
+.aa-row-grid::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+
+/* Single weight card */
+.aa-wcard{background:var(--s1);border:1px solid var(--b1);border-radius:5px;overflow:hidden;min-width:168px;flex:1;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.aa-wcard-hdr{background:linear-gradient(90deg,#1a1f2e,#2c2408);padding:5px 10px;display:flex;align-items:baseline;gap:6px;border-bottom:2px solid var(--gold)}
+.aa-wcard-wt{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:var(--gold2);line-height:1}
+.aa-wcard-lbs{font-size:8px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase}
+
+.aa-wcard-row{display:flex;align-items:center;padding:4px 8px;border-bottom:1px solid var(--b1);gap:5px;min-height:28px}
+.aa-wcard-row:last-child{border-bottom:none}
+.aa-wcard-row.place-1{background:var(--gold-bg)}
+.aa-wcard-row.place-2{background:rgba(107,114,128,.05)}
+.aa-wcard-row.place-3{background:rgba(146,64,14,.04)}
+
+.aa-wcard-place{font-family:'Bebas Neue',sans-serif;font-size:13px;width:16px;flex-shrink:0;text-align:center;line-height:1}
+.aa-wcard-row.place-1 .aa-wcard-place{color:var(--gold)}
+.aa-wcard-row.place-2 .aa-wcard-place{color:#6b7280}
+.aa-wcard-row.place-3 .aa-wcard-place{color:#92400e}
+.aa-wcard-row.place-4 .aa-wcard-place,.aa-wcard-row.place-5 .aa-wcard-place,
+.aa-wcard-row.place-6 .aa-wcard-place,.aa-wcard-row.place-7 .aa-wcard-place,
+.aa-wcard-row.place-8 .aa-wcard-place{color:var(--t3)}
+
+.aa-wcard-medal{font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.aa-wcard-info{flex:1;min-width:0}
+.aa-wcard-name{font-size:10px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.aa-wcard-school{font-size:8px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.aa-wcard-tbd{font-size:9px;color:var(--t3);font-style:italic}
 
 /* MAIN SCROLL AREA */
 .area{flex:1;overflow:auto;padding:14px 18px 24px;display:flex;flex-direction:column;gap:0}
@@ -149,7 +194,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 /* CHAMP BOX */
 .cbox{display:flex;align-items:flex-start;padding:0 14px;flex-direction:column;gap:10px}
 
-/* ALL-AMERICANS PANEL */
+/* ALL-AMERICANS PANEL (inline bracket view) */
 .aa-panel{background:var(--s1);border:1px solid var(--b1);border-radius:5px;min-width:152px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
 .aa-hdr{background:linear-gradient(135deg,#1a1f2e,#2c2408);padding:6px 10px;text-align:center}
 .aa-hdr-t{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--gold2)}
@@ -181,254 +226,79 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
 /* PLACE LABELS */
 .pl-lbl{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;font-family:'Barlow Condensed',sans-serif;color:var(--t3)}
 
-/* SWAP HINT — shown on loser slot hover */
-.swap-hint{
-  display:none; font-size:8px; color:var(--red); opacity:.8;
-  font-family:'Barlow Condensed',sans-serif; letter-spacing:.5px;
-  margin-left:3px; flex-shrink:0; white-space:nowrap;
-}
-.sl.l:hover .swap-hint{ display:inline; }
+/* SWAP HINT */
+.swap-hint{display:none;font-size:8px;color:var(--red);opacity:.8;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;margin-left:3px;flex-shrink:0;white-space:nowrap}
+.sl.l:hover .swap-hint{display:inline}
 
 .prt-btn{border-color:var(--gold);color:var(--gold);margin-left:6px}
 .prt-btn:hover{background:var(--gold);color:#000}
 
-/* ════════════════════════════════════════════════
-   PRINT MODAL (shown on screen before printing)
-   ════════════════════════════════════════════════ */
-#print-modal {
-  display:none; position:fixed; inset:0; z-index:9999;
-  background:rgba(0,0,0,.85); align-items:center; justify-content:center;
-}
-#print-modal.open { display:flex; }
-#print-modal-box {
-  background:#ffffff; border:1px solid var(--gold);
-  border-radius:6px; padding:28px 32px; max-width:420px; width:90%;
-  text-align:center; box-shadow:0 8px 32px rgba(0,0,0,.15);
-}
-#print-modal-box h2 { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; color:var(--gold); margin-bottom:8px; }
-#print-modal-box p  { font-size:12px; color:var(--t2); margin-bottom:20px; line-height:1.6; }
-.pm-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:14px; }
-.pm-btn {
-  background:none; border:1px solid var(--b2); color:var(--t2);
-  font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:1px;
-  padding:7px 18px; cursor:pointer; border-radius:3px; transition:all .2s; text-transform:uppercase;
-}
-.pm-btn:hover { border-color:var(--gold); color:var(--gold); }
-.pm-btn.primary { background:var(--gold); color:#fff; border-color:var(--gold); font-weight:700; }
-.pm-btn.primary:hover { background:var(--gold2); }
-.pm-weight-grid { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:18px; }
-.pm-wchk { display:flex; align-items:center; gap:5px; cursor:pointer; }
-.pm-wchk input { accent-color:var(--gold); width:13px; height:13px; cursor:pointer; }
-.pm-wchk span { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--t2); }
-.pm-wchk:hover span { color:var(--gold); }
+/* PRINT MODAL */
+#print-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center}
+#print-modal.open{display:flex}
+#print-modal-box{background:#ffffff;border:1px solid var(--gold);border-radius:6px;padding:28px 32px;max-width:420px;width:90%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+#print-modal-box h2{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
+#print-modal-box p{font-size:12px;color:var(--t2);margin-bottom:20px;line-height:1.6}
+.pm-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.pm-btn{background:none;border:1px solid var(--b2);color:var(--t2);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;padding:7px 18px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
+.pm-btn:hover{border-color:var(--gold);color:var(--gold)}
+.pm-btn.primary{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:700}
+.pm-btn.primary:hover{background:var(--gold2)}
+.pm-weight-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:18px}
+.pm-wchk{display:flex;align-items:center;gap:5px;cursor:pointer}
+.pm-wchk input{accent-color:var(--gold);width:13px;height:13px;cursor:pointer}
+.pm-wchk span{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--t2)}
+.pm-wchk:hover span{color:var(--gold)}
 
-/* ════════════════════════════════════════════════
-   PRINT STYLES  —  1 landscape page per weight
-   ════════════════════════════════════════════════ */
+/* PRINT STYLES */
 @media print {
-  @page { size: landscape; margin:6mm; }
-  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-
-  html,body {
-    height:auto !important;
-    overflow:visible !important;
-    background:#fff !important;
-    color:#000 !important;
-  }
-
-  .hdr,.wtabs,#area,#scores-view,#print-modal { display:none !important; }
-  #print-root { display:block !important; }
-
-  .print-page {
-    break-after: page;
-    break-inside: avoid;
-    width:100%;
-    overflow:hidden;
-    background:#fff;
-    color:#000;
-    font-family:Arial,Helvetica,sans-serif;
-  }
-  .print-page:last-child { break-after: avoid; }
-
-  .psw { display:block; }
-
-  /* ── Page header ── */
-  .ph {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:2px solid #111;
-    padding-bottom:2px;
-    margin-bottom:3px;
-  }
-  .ph-title {
-    font-size:10pt;
-    font-weight:900;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    line-height:1;
-  }
-  .ph-sub {
-    font-size:5.5pt;
-    color:#666;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin-top:1px;
-  }
-  .ph-wt {
-    font-size:24pt;
-    font-weight:900;
-    line-height:1;
-  }
-  .ph-right {
-    text-align:right;
-    min-width:82px;
-  }
-  .ph-clbl {
-    font-size:5pt;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#888;
-  }
-  .ph-cnm {
-    font-size:9pt;
-    font-weight:900;
-    line-height:1.15;
-  }
-  .ph-csc {
-    font-size:5.5pt;
-    color:#555;
-  }
-
-  /* ── Section labels ── */
-  .ps-lbl {
-    font-size:5pt;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#999;
-    border-top:1px solid #e0e0e0;
-    padding-top:1px;
-    margin:2px 0;
-  }
-
-  /* ── Bracket grid ── */
-  .pbg {
-    display:flex;
-    align-items:flex-start;
-    gap:0;
-  }
-  .prc {
-    display:flex;
-    flex-direction:column;
-  }
-  .prh {
-    font-size:4.6pt;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    color:#aaa;
-    text-align:center;
-    padding:0 1px 1px;
-    white-space:nowrap;
-  }
-  .prcn {
-    width:5px;
-    flex-shrink:0;
-  }
-
-  /* ── Match cards ── */
-  .pm {
-    border:1px solid #ccc;
-    border-radius:1px;
-    overflow:hidden;
-    width:98px;
-    flex-shrink:0;
-    background:#fff;
-  }
-  .pm.champ-final { border:2px solid #111; }
-  .pm.pigtail     { border:1px dashed #bbb; }
-  .pm.consolation { border-color:#bbb; background:#fafafa; }
-  .pm.place-match { border:1.5px solid #666; }
-  .pmd { height:1px; background:#ddd; }
-
-  /* ── Wrestler slots ── */
-  .ps {
-    display:flex;
-    align-items:center;
-    padding:1px 2px;
-    min-height:14px;
-  }
-  .ps.win  { background:#e8f5e9; border-left:2px solid #2e7d32; }
-  .ps.los  { opacity:0.4; }
-  .ps.tbd  { opacity:0.2; }
-
-  .psseed {
-    font-size:4.6pt;
-    color:#bbb;
-    width:8px;
-    flex-shrink:0;
-    text-align:right;
-    padding-right:1px;
-  }
-  .ps.win .psseed { color:#2e7d32; }
-
-  .psname {
-    flex:1;
-    font-size:5pt;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    padding:0 1px;
-    font-weight:500;
-  }
-  .ps.win .psname { font-weight:700; color:#1b5e20; }
-  .ps.los .psname { text-decoration:line-through; color:#bbb; }
-
-  .pssch {
-    font-size:4.1pt;
-    color:#bbb;
-    flex-shrink:0;
-    max-width:24px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-
-  .pstbd {
-    font-size:4.8pt;
-    color:#ccc;
-    font-style:italic;
-  }
-
-  /* ── Champion box ── */
-  .pchbox {
-    display:flex;
-    align-items:center;
-    padding:0 3px;
-  }
-  .pchcard {
-    border:2px solid #111;
-    border-radius:2px;
-    padding:3px 5px;
-    text-align:center;
-    min-width:58px;
-    background:#fffdf5;
-  }
-  .pchcard .pcrown { font-size:10pt; margin-bottom:1px; line-height:1; }
-  .pchcard .pclbl  { font-size:4.2pt; text-transform:uppercase; letter-spacing:1.5px; color:#888; }
-  .pchcard .pcnm   { font-size:6.3pt; font-weight:900; text-transform:uppercase; line-height:1.2; }
-  .pchcard .pcsc   { font-size:4.6pt; color:#555; }
-  .pchcard.empty .pcnm { color:#aaa; font-weight:400; }
-
-  /* ── Place labels ── */
-  .ppl-lbl {
-    font-size:4.2pt;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    color:#888;
-    margin-bottom:0;
-  }
+  @page{size:landscape;margin:6mm}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important;color:#000!important}
+  .hdr,.wtabs,#area,#scores-view,#aa-view,#print-modal{display:none!important}
+  #print-root{display:block!important}
+  .print-page{break-after:page;break-inside:avoid;width:100%;overflow:hidden;background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif}
+  .print-page:last-child{break-after:avoid}
+  .psw{display:block}
+  .ph{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #111;padding-bottom:2px;margin-bottom:3px}
+  .ph-title{font-size:10pt;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;line-height:1}
+  .ph-sub{font-size:5.5pt;color:#666;text-transform:uppercase;letter-spacing:1px;margin-top:1px}
+  .ph-wt{font-size:24pt;font-weight:900;line-height:1}
+  .ph-right{text-align:right;min-width:82px}
+  .ph-clbl{font-size:5pt;text-transform:uppercase;letter-spacing:1.5px;color:#888}
+  .ph-cnm{font-size:9pt;font-weight:900;line-height:1.15}
+  .ph-csc{font-size:5.5pt;color:#555}
+  .ps-lbl{font-size:5pt;text-transform:uppercase;letter-spacing:1.5px;color:#999;border-top:1px solid #e0e0e0;padding-top:1px;margin:2px 0}
+  .pbg{display:flex;align-items:flex-start;gap:0}
+  .prc{display:flex;flex-direction:column}
+  .prh{font-size:4.6pt;text-transform:uppercase;letter-spacing:.8px;color:#aaa;text-align:center;padding:0 1px 1px;white-space:nowrap}
+  .prcn{width:5px;flex-shrink:0}
+  .pm{border:1px solid #ccc;border-radius:1px;overflow:hidden;width:98px;flex-shrink:0;background:#fff}
+  .pm.champ-final{border:2px solid #111}
+  .pm.pigtail{border:1px dashed #bbb}
+  .pm.consolation{border-color:#bbb;background:#fafafa}
+  .pm.place-match{border:1.5px solid #666}
+  .pmd{height:1px;background:#ddd}
+  .ps{display:flex;align-items:center;padding:1px 2px;min-height:14px}
+  .ps.win{background:#e8f5e9;border-left:2px solid #2e7d32}
+  .ps.los{opacity:0.4}
+  .ps.tbd{opacity:0.2}
+  .psseed{font-size:4.6pt;color:#bbb;width:8px;flex-shrink:0;text-align:right;padding-right:1px}
+  .ps.win .psseed{color:#2e7d32}
+  .psname{flex:1;font-size:5pt;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 1px;font-weight:500}
+  .ps.win .psname{font-weight:700;color:#1b5e20}
+  .ps.los .psname{text-decoration:line-through;color:#bbb}
+  .pssch{font-size:4.1pt;color:#bbb;flex-shrink:0;max-width:24px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pstbd{font-size:4.8pt;color:#ccc;font-style:italic}
+  .pchbox{display:flex;align-items:center;padding:0 3px}
+  .pchcard{border:2px solid #111;border-radius:2px;padding:3px 5px;text-align:center;min-width:58px;background:#fffdf5}
+  .pchcard .pcrown{font-size:10pt;margin-bottom:1px;line-height:1}
+  .pchcard .pclbl{font-size:4.2pt;text-transform:uppercase;letter-spacing:1.5px;color:#888}
+  .pchcard .pcnm{font-size:6.3pt;font-weight:900;text-transform:uppercase;line-height:1.2}
+  .pchcard .pcsc{font-size:4.6pt;color:#555}
+  .pchcard.empty .pcnm{color:#aaa;font-weight:400}
+  .ppl-lbl{font-size:4.2pt;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:0}
 }
-
 </style>
 </head>
 <body>
@@ -492,6 +362,14 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   </div>
 </div>
 
+<!-- All-Americans View -->
+<div id="aa-view">
+  <div class="aa-view-title">All-Americans</div>
+  <div class="aa-view-sub">Top 8 Finishers Per Weight · 2026 NCAA Division I Wrestling</div>
+  <div id="aa-grid-125-157"></div>
+  <div id="aa-grid-165-285"></div>
+</div>
+
 <!-- Print modal -->
 <div id="print-modal">
   <div id="print-modal-box">
@@ -509,421 +387,149 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--t1);displa
   </div>
 </div>
 
-<!-- Print output — hidden on screen, rendered during print -->
 <div id="print-root" style="display:none"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-// 2024 NCAA DIVISION I WRESTLING CHAMPIONSHIP DATA
-// 33 wrestlers per weight class.
-// Pigtail: seed 32 vs seed 33 → winner faces seed 1 in Round 1.
-// Standard 32-man bracket (after pigtail resolves):
-//   Top half:    1(pt) v 32, 16 v 17, 8 v 25, 9 v 24, 4 v 29, 13 v 20, 5 v 28, 12 v 21
-//   Bottom half: 2 v 31, 15 v 18, 7 v 26, 10 v 23, 3 v 30, 14 v 19, 6 v 27, 11 v 22
-// ═══════════════════════════════════════════════════════════════════
-
 const FIELDS = {
   125: [
-{n:"Luke Lilledahl ",s:"Penn State"},        // 1
-{n:"Eddie Ventresca ",s:"Virginia Tech"},        // 2
-{n:"Nic Bouzakis ",s:"Ohio State"},        // 3
-{n:"Sheldon Seymour ",s:"Lehigh"},        // 4
-{n:"Troy Spratley ",s:"Oklahoma State"},        // 5
-{n:"Jore Volk ",s:"Minnesota"},        // 6
-{n:"Nico Provo ",s:"Stanford"},        // 7
-{n:"Dean Peterson ",s:"Iowa"},        // 8
-{n:"Maximo Renteria ",s:"Oregon State"},        // 9
-{n:"Marc-Anthony McGowan ",s:"Princeton"},        // 10
-{n:"Tyler Klinsky ",s:"Rider"},        // 11
-{n:"Vincent Robinson ",s:"NC State"},        // 12
-{n:"Stevo Poulin ",s:"Iowa State"},        // 13
-{n:"Jacob Moran ",s:"Indiana"},        // 14
-{n:"Koda Holeman ",s:"Cal Poly"},        // 15
-{n:"Ezekiel Witt ",s:"ND State"},        // 16
-{n:"Jett Strickenberger ",s:"West Virginia"},        // 17
-{n:"Spencer Moore ",s:"Illinois"},        // 18
-{n:"Kysen Terukina ",s:"North Carolina"},        // 19
-{n:"Diego Sotelo ",s:"Michigan"},        // 20
-{n:"Conrad Hendriksen ",s:"Oklahoma"},        // 21
-{n:"Davis Motyka ",s:"Penn"},        // 22
-{n:"Nicolar Rivera ",s:"Wisconsin"},        // 23
-{n:"Ayden Smith ",s:"Rutgers"},        // 24
-{n:"Kael Lauridsen ",s:"Nebraska"},        // 25
-{n:"Cooper Flynn ",s:"Chattanooga"},        // 26
-{n:"Brady Roark ",s:"SD State"},        // 27
-{n:"Andrew Binni ",s:"Navy"},        // 28
-{n:"Tyler Chappell ",s:"Pittsburgh"},        // 29
-{n:"Sulayman Bah ",s:"Columbia"},        // 30
-{n:"Desmond Pleasant ",s:"Drexel"},        // 31
-{n:"Mack Mauger ",s:"Missouri"},        // 32
-{n:"Jace Schafer ",s:"Bloomsburg"},        // 33 — pigtail
+{n:"Luke Lilledahl ",s:"Penn State"},{n:"Eddie Ventresca ",s:"Virginia Tech"},{n:"Nic Bouzakis ",s:"Ohio State"},
+{n:"Sheldon Seymour ",s:"Lehigh"},{n:"Troy Spratley ",s:"Oklahoma State"},{n:"Jore Volk ",s:"Minnesota"},
+{n:"Nico Provo ",s:"Stanford"},{n:"Dean Peterson ",s:"Iowa"},{n:"Maximo Renteria ",s:"Oregon State"},
+{n:"Marc-Anthony McGowan ",s:"Princeton"},{n:"Tyler Klinsky ",s:"Rider"},{n:"Vincent Robinson ",s:"NC State"},
+{n:"Stevo Poulin ",s:"Iowa State"},{n:"Jacob Moran ",s:"Indiana"},{n:"Koda Holeman ",s:"Cal Poly"},
+{n:"Ezekiel Witt ",s:"ND State"},{n:"Jett Strickenberger ",s:"West Virginia"},{n:"Spencer Moore ",s:"Illinois"},
+{n:"Kysen Terukina ",s:"North Carolina"},{n:"Diego Sotelo ",s:"Michigan"},{n:"Conrad Hendriksen ",s:"Oklahoma"},
+{n:"Davis Motyka ",s:"Penn"},{n:"Nicolar Rivera ",s:"Wisconsin"},{n:"Ayden Smith ",s:"Rutgers"},
+{n:"Kael Lauridsen ",s:"Nebraska"},{n:"Cooper Flynn ",s:"Chattanooga"},{n:"Brady Roark ",s:"SD State"},
+{n:"Andrew Binni ",s:"Navy"},{n:"Tyler Chappell ",s:"Pittsburgh"},{n:"Sulayman Bah ",s:"Columbia"},
+{n:"Desmond Pleasant ",s:"Drexel"},{n:"Mack Mauger ",s:"Missouri"},{n:"Jace Schafer ",s:"Bloomsburg"},
   ],
   133: [
-    {n:"Jax Forrest ",s:"Oklahoma State"},        // 1
-{n:"Ben Davino ",s:"Ohio State"},        // 2
-{n:"Marcus Blaze ",s:"Penn State"},        // 3
-{n:"Aaron Seidel ",s:"Virginia Tech"},        // 4
-{n:"Kyler Larkin ",s:"Arizona State"},        // 5
-{n:"Drake Ayala ",s:"Iowa"},        // 6
-{n:"Lucas Byrd ",s:"Illinois"},        // 7
-{n:"Markel Baker ",s:"N. Illinois"},        // 8
-{n:"Dominick Serrano ",s:"N. Colorado"},        // 9
-{n:"Max Leete ",s:"American"},        // 10
-{n:"Tyler Ferrara ",s:"Cornell"},        // 11
-{n:"Evan Mougalian ",s:"Penn"},        // 12
-{n:"Jacob Van Dee ",s:"Nebraska"},        // 13
-{n:"Ethan Berginc ",s:"Army"},        // 14
-{n:"Tyler Knox ",s:"Stanford"},        // 15
-{n:"Zan Fugitt ",s:"Wisconsin"},        // 16
-{n:"T.K. Davis ",s:"Gardner-Webb"},        // 17
-{n:"Gunner Andrick ",s:"West Virginia"},        // 18
-{n:"Gage Walker ",s:"Missouri"},        // 19
-{n:"Julian Farber ",s:"Northern Iowa"},        // 20
-{n:"Sean Spidle ",s:"Northwestern"},        // 21
-{n:"Zach Redding ",s:"NC State"},        // 22
-{n:"Braxton Brown ",s:"Maryland"},        // 23
-{n:"Blake Boarman ",s:"Purdue"},        // 24
-{n:"Will Betancourt ",s:"Rider"},        // 25
-{n:"Dylan Shawver ",s:"Rutgers"},        // 26
-{n:"Marcel Lopez ",s:"SIUE"},        // 27
-{n:"Garrett Grice ",s:"Iowa State"},        // 28
-{n:"Luke Willochell ",s:"Wyoming"},        // 29
-{n:"Gabe Whisenhunt ",s:"Oregon State"},        // 30
-{n:"Gable Strickland ",s:"Lock Haven"},        // 31
-{n:"Andrew Austin ",s:"Central Michigan"},        // 32
-{n:"Carter Schmidt ",s:"Oklahoma"},        // 33 — pigtail
+{n:"Jax Forrest ",s:"Oklahoma State"},{n:"Ben Davino ",s:"Ohio State"},{n:"Marcus Blaze ",s:"Penn State"},
+{n:"Aaron Seidel ",s:"Virginia Tech"},{n:"Kyler Larkin ",s:"Arizona State"},{n:"Drake Ayala ",s:"Iowa"},
+{n:"Lucas Byrd ",s:"Illinois"},{n:"Markel Baker ",s:"N. Illinois"},{n:"Dominick Serrano ",s:"N. Colorado"},
+{n:"Max Leete ",s:"American"},{n:"Tyler Ferrara ",s:"Cornell"},{n:"Evan Mougalian ",s:"Penn"},
+{n:"Jacob Van Dee ",s:"Nebraska"},{n:"Ethan Berginc ",s:"Army"},{n:"Tyler Knox ",s:"Stanford"},
+{n:"Zan Fugitt ",s:"Wisconsin"},{n:"T.K. Davis ",s:"Gardner-Webb"},{n:"Gunner Andrick ",s:"West Virginia"},
+{n:"Gage Walker ",s:"Missouri"},{n:"Julian Farber ",s:"Northern Iowa"},{n:"Sean Spidle ",s:"Northwestern"},
+{n:"Zach Redding ",s:"NC State"},{n:"Braxton Brown ",s:"Maryland"},{n:"Blake Boarman ",s:"Purdue"},
+{n:"Will Betancourt ",s:"Rider"},{n:"Dylan Shawver ",s:"Rutgers"},{n:"Marcel Lopez ",s:"SIUE"},
+{n:"Garrett Grice ",s:"Iowa State"},{n:"Luke Willochell ",s:"Wyoming"},{n:"Gabe Whisenhunt ",s:"Oregon State"},
+{n:"Gable Strickland ",s:"Lock Haven"},{n:"Andrew Austin ",s:"Central Michigan"},{n:"Carter Schmidt ",s:"Oklahoma"},
   ],
   141: [
-   {n:"Jesse Mendez ",s:"Ohio State"},        // 1
-{n:"Sergio Vega ",s:"Oklahoma State"},        // 2
-{n:"Brock Hardy ",s:"Nebraska"},        // 3
-{n:"Anthony Echemendia ",s:"Iowa State"},        // 4
-{n:"Luke Stanich ",s:"Lehigh"},        // 5
-{n:"Vince Cornella ",s:"Cornell"},        // 6
-{n:"Nasir Bailey ",s:"Iowa"},        // 7
-{n:"Vance VomBaur ",s:"Minnesota"},        // 8
-{n:"Joey Olivieri ",s:"Rutgers"},        // 9
-{n:"Jack Consiglio ",s:"Stanford"},        // 10
-{n:"CJ Composto ",s:"Penn"},        // 11
-{n:"Luke Simcox ",s:"North Carolina"},        // 12
-{n:"Wyatt Henson ",s:"Lock Haven"},        // 13
-{n:"Braeden Davis ",s:"Penn State"},        // 14
-{n:"Elijah Griffin ",s:"Rider"},        // 15
-{n:"Ryan Jack ",s:"NC State"},        // 16
-{n:"Caedyn Ricciardi ",s:"Navy"},        // 17
-{n:"Carter Nogle ",s:"Air Force"},        // 18
-{n:"Haiden Drury ",s:"Utah Valley"},        // 19
-{n:"Julian Tagg ",s:"SD State"},        // 20
-{n:"Tyler Wells ",s:"Oklahoma"},        // 21
-{n:"Lorenzo Frezza ",s:"Columbia"},        // 22
-{n:"Dylan Chappell ",s:"Bucknell"},        // 23
-{n:"Nash Singleton ",s:"Oregon State"},        // 24
-{n:"Tom Crook ",s:"Virginia Tech"},        // 25
-{n:"Braden Basile ",s:"Army"},        // 26
-{n:"Gable Porter ",s:"Virginia"},        // 27
-{n:"Pierson Manville ",s:"Arizona State"},        // 28
-{n:"Jordan Titus ",s:"West Virginia"},        // 29
-{n:"Dario Lemus ",s:"Maryland"},        // 30
-{n:"Billy DeKraker ",s:"Northwestern"},        // 31
-{n:"Matthew Martino ",s:"Princeton"},        // 32
-{n:"Aldo Hernandez ",s:"App State"},        // 33 — pigtail
+{n:"Jesse Mendez ",s:"Ohio State"},{n:"Sergio Vega ",s:"Oklahoma State"},{n:"Brock Hardy ",s:"Nebraska"},
+{n:"Anthony Echemendia ",s:"Iowa State"},{n:"Luke Stanich ",s:"Lehigh"},{n:"Vince Cornella ",s:"Cornell"},
+{n:"Nasir Bailey ",s:"Iowa"},{n:"Vance VomBaur ",s:"Minnesota"},{n:"Joey Olivieri ",s:"Rutgers"},
+{n:"Jack Consiglio ",s:"Stanford"},{n:"CJ Composto ",s:"Penn"},{n:"Luke Simcox ",s:"North Carolina"},
+{n:"Wyatt Henson ",s:"Lock Haven"},{n:"Braeden Davis ",s:"Penn State"},{n:"Elijah Griffin ",s:"Rider"},
+{n:"Ryan Jack ",s:"NC State"},{n:"Caedyn Ricciardi ",s:"Navy"},{n:"Carter Nogle ",s:"Air Force"},
+{n:"Haiden Drury ",s:"Utah Valley"},{n:"Julian Tagg ",s:"SD State"},{n:"Tyler Wells ",s:"Oklahoma"},
+{n:"Lorenzo Frezza ",s:"Columbia"},{n:"Dylan Chappell ",s:"Bucknell"},{n:"Nash Singleton ",s:"Oregon State"},
+{n:"Tom Crook ",s:"Virginia Tech"},{n:"Braden Basile ",s:"Army"},{n:"Gable Porter ",s:"Virginia"},
+{n:"Pierson Manville ",s:"Arizona State"},{n:"Jordan Titus ",s:"West Virginia"},{n:"Dario Lemus ",s:"Maryland"},
+{n:"Billy DeKraker ",s:"Northwestern"},{n:"Matthew Martino ",s:"Princeton"},{n:"Aldo Hernandez ",s:"App State"},
   ],
   149: [
-   {n:"Shayne Van Ness ",s:"Penn State"},        // 1
-{n:"Jaxon Joy ",s:"Cornell"},        // 2
-{n:"Cross Wasilewski ",s:"Penn"},        // 3
-{n:"Collin Gaj ",s:"Virginia Tech"},        // 4
-{n:"Koy Buesgens ",s:"NC State"},        // 5
-{n:"Caleb Tyus ",s:"SIUE"},        // 6
-{n:"Ethan Stiles ",s:"Ohio State"},        // 7
-{n:"Casey Swiderski ",s:"Oklahoma State"},        // 8
-{n:"David Evans ",s:"Utah Valley"},        // 9
-{n:"Aden Valencia ",s:"Stanford"},        // 10
-{n:"Lachlan McNeil ",s:"Michigan"},        // 11
-{n:"Carter Young ",s:"Maryland"},        // 12
-{n:"Joseph Zargo ",s:"Wisconsin"},        // 13
-{n:"Caleb Rathjen ",s:"Northern Iowa"},        // 14
-{n:"Ryder Block ",s:"Iowa"},        // 15
-{n:"Jacob Frost ",s:"Iowa State"},        // 16
-{n:"Lucas Kapusta ",s:"Lock Haven"},        // 17
-{n:"Eugene Harney ",s:"Morgan State"},        // 18
-{n:"Brock Herman ",s:"Little Rock"},        // 19
-{n:"Chance Lamer ",s:"Nebraska"},        // 20
-{n:"Gabe Willochell ",s:"Wyoming"},        // 21
-{n:"Eligh Rivera ",s:"Princeton"},        // 22
-{n:"Max Petersen ",s:"ND State"},        // 23
-{n:"Andrew Clark ",s:"Rutgers"},        // 24
-{n:"Michael Gioffre ",s:"Illinois"},        // 25
-{n:"Anderson Heap ",s:"Davidson"},        // 26
-{n:"Andre Gonzales ",s:"Cal Poly"},        // 27
-{n:"Kade Brown ",s:"Pittsburgh"},        // 28
-{n:"Kaden Cassidy ",s:"George Mason"},        // 29
-{n:"Dylan Layton ",s:"Rider"},        // 30
-{n:"Ryan Michaels ",s:"Edinboro"},        // 31
-{n:"Clayton Jones ",s:"Michigan State"},        // 32
-{n:"Austin McBurney ",s:"Brown"},        // 33 — pigtail
+{n:"Shayne Van Ness ",s:"Penn State"},{n:"Jaxon Joy ",s:"Cornell"},{n:"Cross Wasilewski ",s:"Penn"},
+{n:"Collin Gaj ",s:"Virginia Tech"},{n:"Koy Buesgens ",s:"NC State"},{n:"Caleb Tyus ",s:"SIUE"},
+{n:"Ethan Stiles ",s:"Ohio State"},{n:"Casey Swiderski ",s:"Oklahoma State"},{n:"David Evans ",s:"Utah Valley"},
+{n:"Aden Valencia ",s:"Stanford"},{n:"Lachlan McNeil ",s:"Michigan"},{n:"Carter Young ",s:"Maryland"},
+{n:"Joseph Zargo ",s:"Wisconsin"},{n:"Caleb Rathjen ",s:"Northern Iowa"},{n:"Ryder Block ",s:"Iowa"},
+{n:"Jacob Frost ",s:"Iowa State"},{n:"Lucas Kapusta ",s:"Lock Haven"},{n:"Eugene Harney ",s:"Morgan State"},
+{n:"Brock Herman ",s:"Little Rock"},{n:"Chance Lamer ",s:"Nebraska"},{n:"Gabe Willochell ",s:"Wyoming"},
+{n:"Eligh Rivera ",s:"Princeton"},{n:"Max Petersen ",s:"ND State"},{n:"Andrew Clark ",s:"Rutgers"},
+{n:"Michael Gioffre ",s:"Illinois"},{n:"Anderson Heap ",s:"Davidson"},{n:"Andre Gonzales ",s:"Cal Poly"},
+{n:"Kade Brown ",s:"Pittsburgh"},{n:"Kaden Cassidy ",s:"George Mason"},{n:"Dylan Layton ",s:"Rider"},
+{n:"Ryan Michaels ",s:"Edinboro"},{n:"Clayton Jones ",s:"Michigan State"},{n:"Austin McBurney ",s:"Brown"},
   ],
   157: [
-    {n:"PJ Duke ",s:"Penn State"},        // 1
-{n:"Antrell Taylor ",s:"Nebraska"},        // 2
-{n:"Meyer Shapiro ",s:"Cornell"},        // 3
-{n:"Kaleb Larkin ",s:"Arizona State"},        // 4
-{n:"Landon Robideau ",s:"Oklahoma State"},        // 5
-{n:"Jude Swisher ",s:"Penn"},        // 6
-{n:"Kannon Webster ",s:"Illinois"},        // 7
-{n:"Brandon Cannon ",s:"Ohio State"},        // 8
-{n:"Daniel Cardenas ",s:"Stanford"},        // 9
-{n:"Logan Rozynski ",s:"Lehigh"},        // 10
-{n:"Ty Watters ",s:"West Virginia"},        // 11
-{n:"Vinny Zerban ",s:"Iowa State"},        // 12
-{n:"Derek Raike ",s:"Ohio"},        // 13
-{n:"Ethen Miller ",s:"Virginia Tech"},        // 14
-{n:"Cameron Catrabone ",s:"Michigan"},        // 15
-{n:"Cael Swensen ",s:"SD State"},        // 16
-{n:"Luke Mechler ",s:"Wisconsin"},        // 17
-{n:"DJ McGee ",s:"George Mason"},        // 18
-{n:"Kai Owen ",s:"Columbia"},        // 19
-{n:"Jimmy Harrington ",s:"Harvard"},        // 20
-{n:"Charlie Millard ",s:"Minnesota"},        // 21
-{n:"Colton Washleski ",s:"Virginia"},        // 22
-{n:"Kaleb Burgess ",s:"Buffalo"},        // 23
-{n:"Jaivon Jones ",s:"Little Rock"},        // 24
-{n:"Mason Shrader ",s:"Central Michigan"},        // 25
-{n:"Jonathan Ley ",s:"Navy"},        // 26
-{n:"Dylan Evans ",s:"Pittsburgh"},        // 27
-{n:"Gavin Drexler ",s:"ND State"},        // 28
-{n:"Bryce Lowery ",s:"Indiana"},        // 29
-{n:"Laird Root ",s:"North Carolina"},        // 30
-{n:"Garrett McChesney ",s:"Edinboro"},        // 31
-{n:"Jeb Prechtel ",s:"Bellarmine"},        // 32
-{n:"Yannis Charles ",s:"Morgan State"},        // 33 — pigtail
+{n:"PJ Duke ",s:"Penn State"},{n:"Antrell Taylor ",s:"Nebraska"},{n:"Meyer Shapiro ",s:"Cornell"},
+{n:"Kaleb Larkin ",s:"Arizona State"},{n:"Landon Robideau ",s:"Oklahoma State"},{n:"Jude Swisher ",s:"Penn"},
+{n:"Kannon Webster ",s:"Illinois"},{n:"Brandon Cannon ",s:"Ohio State"},{n:"Daniel Cardenas ",s:"Stanford"},
+{n:"Logan Rozynski ",s:"Lehigh"},{n:"Ty Watters ",s:"West Virginia"},{n:"Vinny Zerban ",s:"Iowa State"},
+{n:"Derek Raike ",s:"Ohio"},{n:"Ethen Miller ",s:"Virginia Tech"},{n:"Cameron Catrabone ",s:"Michigan"},
+{n:"Cael Swensen ",s:"SD State"},{n:"Luke Mechler ",s:"Wisconsin"},{n:"DJ McGee ",s:"George Mason"},
+{n:"Kai Owen ",s:"Columbia"},{n:"Jimmy Harrington ",s:"Harvard"},{n:"Charlie Millard ",s:"Minnesota"},
+{n:"Colton Washleski ",s:"Virginia"},{n:"Kaleb Burgess ",s:"Buffalo"},{n:"Jaivon Jones ",s:"Little Rock"},
+{n:"Mason Shrader ",s:"Central Michigan"},{n:"Jonathan Ley ",s:"Navy"},{n:"Dylan Evans ",s:"Pittsburgh"},
+{n:"Gavin Drexler ",s:"ND State"},{n:"Bryce Lowery ",s:"Indiana"},{n:"Laird Root ",s:"North Carolina"},
+{n:"Garrett McChesney ",s:"Edinboro"},{n:"Jeb Prechtel ",s:"Bellarmine"},{n:"Yannis Charles ",s:"Morgan State"},
   ],
   165: [
-    {n:"Mitchell Mesenbrink ",s:"Penn State"},        // 1
-{n:"Joey Blaze ",s:"Purdue"},        // 2
-{n:"Michael Caliendo ",s:"Iowa"},        // 3
-{n:"Nicco Ruiz ",s:"Arizona State"},        // 4
-{n:"LaDarion Lockett ",s:"Oklahoma State"},        // 5
-{n:"LJ Araujo ",s:"Nebraska"},        // 6
-{n:"Max Brignola ",s:"Lehigh"},        // 7
-{n:"Matty Bianchi ",s:"Little Rock"},        // 8
-{n:"Bryce Hepner ",s:"North Carolina"},        // 9
-{n:"Will Denny ",s:"NC State"},        // 10
-{n:"Ryder Downey ",s:"Northern Iowa"},        // 11
-{n:"Cesar Alvan ",s:"Columbia"},        // 12
-{n:"Andrew Sparks ",s:"Minnesota"},        // 13
-{n:"Andrew Barbosa ",s:"Rutgers"},        // 14
-{n:"Connor Euton ",s:"Iowa State"},        // 15
-{n:"Paddy Gallagher ",s:"Ohio State"},        // 16
-{n:"Braeden Scoles ",s:"Illinois"},        // 17
-{n:"Gunner Filipowicz ",s:"Army"},        // 18
-{n:"Noah Mulvaney ",s:"Bucknell"},        // 19
-{n:"Ty Whalen ",s:"Princeton"},        // 20
-{n:"Brock Woodcock ",s:"SIUE"},        // 21
-{n:"Matthew Olguin ",s:"Oregon State"},        // 22
-{n:"Chris Earnest ",s:"Kent State"},        // 23
-{n:"Sean Seefeldt ",s:"Penn"},        // 24
-{n:"Mac Church ",s:"Virginia Tech"},        // 25
-{n:"Tyler Lillard ",s:"Indiana"},        // 26
-{n:"EJ Parco ",s:"Stanford"},        // 27
-{n:"Cody Goebel ",s:"Wisconsin"},        // 28
-{n:"Ryan Burgos ",s:"Edinboro"},        // 29
-{n:"Thomas Snipes ",s:"The Citadel"},        // 30
-{n:"Jared Keslar ",s:"Pittsburgh"},        // 31
-{n:"Cody Walsh ",s:"Drexel"},        // 32
-{n:"Ryan Vigil ",s:"VMI"},        // 33 — pigtail
+{n:"Mitchell Mesenbrink ",s:"Penn State"},{n:"Joey Blaze ",s:"Purdue"},{n:"Michael Caliendo ",s:"Iowa"},
+{n:"Nicco Ruiz ",s:"Arizona State"},{n:"LaDarion Lockett ",s:"Oklahoma State"},{n:"LJ Araujo ",s:"Nebraska"},
+{n:"Max Brignola ",s:"Lehigh"},{n:"Matty Bianchi ",s:"Little Rock"},{n:"Bryce Hepner ",s:"North Carolina"},
+{n:"Will Denny ",s:"NC State"},{n:"Ryder Downey ",s:"Northern Iowa"},{n:"Cesar Alvan ",s:"Columbia"},
+{n:"Andrew Sparks ",s:"Minnesota"},{n:"Andrew Barbosa ",s:"Rutgers"},{n:"Connor Euton ",s:"Iowa State"},
+{n:"Paddy Gallagher ",s:"Ohio State"},{n:"Braeden Scoles ",s:"Illinois"},{n:"Gunner Filipowicz ",s:"Army"},
+{n:"Noah Mulvaney ",s:"Bucknell"},{n:"Ty Whalen ",s:"Princeton"},{n:"Brock Woodcock ",s:"SIUE"},
+{n:"Matthew Olguin ",s:"Oregon State"},{n:"Chris Earnest ",s:"Kent State"},{n:"Sean Seefeldt ",s:"Penn"},
+{n:"Mac Church ",s:"Virginia Tech"},{n:"Tyler Lillard ",s:"Indiana"},{n:"EJ Parco ",s:"Stanford"},
+{n:"Cody Goebel ",s:"Wisconsin"},{n:"Ryan Burgos ",s:"Edinboro"},{n:"Thomas Snipes ",s:"The Citadel"},
+{n:"Jared Keslar ",s:"Pittsburgh"},{n:"Cody Walsh ",s:"Drexel"},{n:"Ryan Vigil ",s:"VMI"},
   ],
   174: [
-  {n:"Levi Haines ",s:"Penn State"},        // 1
-{n:"Simon Ruiz ",s:"Cornell"},        // 2
-{n:"Christopher Minto ",s:"Nebraska"},        // 3
-{n:"Carson Kharchla ",s:"Ohio State"},        // 4
-{n:"Patrick Kennedy ",s:"Iowa"},        // 5
-{n:"Matthew Singleton ",s:"NC State"},        // 6
-{n:"Cam Steed ",s:"Missouri"},        // 7
-{n:"Alex Facundo ",s:"Oklahoma State"},        // 8
-{n:"Beau Mantanona ",s:"Michigan"},        // 9
-{n:"Myles Takats ",s:"Bucknell"},        // 10
-{n:"MJ Gaitan ",s:"Iowa State"},        // 11
-{n:"Carter Schubert ",s:"Oklahoma"},        // 12
-{n:"Carter Baer ",s:"Binghamton"},        // 13
-{n:"Moses Espinoza-Owens ",s:"SD State"},        // 14
-{n:"Danny Wask ",s:"Navy"},        // 15
-{n:"Nick Fine ",s:"Columbia"},        // 16
-{n:"Jared Simma ",s:"Northern Iowa"},        // 17
-{n:"Colin Kelly ",s:"Illinois"},        // 18
-{n:"Logan Messer ",s:"George Mason"},        // 19
-{n:"Daschle Lamer ",s:"Oregon State"},        // 20
-{n:"Lenny Pinto ",s:"Rutgers"},        // 21
-{n:"Brody Baumann ",s:"Purdue"},        // 22
-{n:"Luca Augustine ",s:"Pittsburgh"},        // 23
-{n:"Garrett Thompson ",s:"Ohio"},        // 24
-{n:"Sergio Desiante ",s:"Virginia Tech"},        // 25
-{n:"Derek Gilcher ",s:"Indiana"},        // 26
-{n:"Collin Carrigan ",s:"North Carolina"},        // 27
-{n:"Holden Garcia ",s:"Princeton"},        // 28
-{n:"Avery Bassett ",s:"Lock Haven"},        // 29
-{n:"Riley Davis ",s:"Wyoming"},        // 30
-{n:"Cael Valencia ",s:"Arizona State"},        // 31
-{n:"Lucas Condon ",s:"Wisconsin"},        // 32
-{n:"Grant O'Dell ",s:"Bellarmine"},        // 33 — pigtail
+{n:"Levi Haines ",s:"Penn State"},{n:"Simon Ruiz ",s:"Cornell"},{n:"Christopher Minto ",s:"Nebraska"},
+{n:"Carson Kharchla ",s:"Ohio State"},{n:"Patrick Kennedy ",s:"Iowa"},{n:"Matthew Singleton ",s:"NC State"},
+{n:"Cam Steed ",s:"Missouri"},{n:"Alex Facundo ",s:"Oklahoma State"},{n:"Beau Mantanona ",s:"Michigan"},
+{n:"Myles Takats ",s:"Bucknell"},{n:"MJ Gaitan ",s:"Iowa State"},{n:"Carter Schubert ",s:"Oklahoma"},
+{n:"Carter Baer ",s:"Binghamton"},{n:"Moses Espinoza-Owens ",s:"SD State"},{n:"Danny Wask ",s:"Navy"},
+{n:"Nick Fine ",s:"Columbia"},{n:"Jared Simma ",s:"Northern Iowa"},{n:"Colin Kelly ",s:"Illinois"},
+{n:"Logan Messer ",s:"George Mason"},{n:"Daschle Lamer ",s:"Oregon State"},{n:"Lenny Pinto ",s:"Rutgers"},
+{n:"Brody Baumann ",s:"Purdue"},{n:"Luca Augustine ",s:"Pittsburgh"},{n:"Garrett Thompson ",s:"Ohio"},
+{n:"Sergio Desiante ",s:"Virginia Tech"},{n:"Derek Gilcher ",s:"Indiana"},{n:"Collin Carrigan ",s:"North Carolina"},
+{n:"Holden Garcia ",s:"Princeton"},{n:"Avery Bassett ",s:"Lock Haven"},{n:"Riley Davis ",s:"Wyoming"},
+{n:"Cael Valencia ",s:"Arizona State"},{n:"Lucas Condon ",s:"Wisconsin"},{n:"Grant O'Dell ",s:"Bellarmine"},
   ],
   184: [
-   {n:"Rocco Welsh ",s:"Penn State"},        // 1
-{n:"Aeoden Sinclair ",s:"Missouri"},        // 2
-{n:"Max McEnelly ",s:"Minnesota"},        // 3
-{n:"James Conway ",s:"Franklin & Marshall"},        // 4
-{n:"Brock Mantanona ",s:"Michigan"},        // 5
-{n:"Eddie Neitenbach ",s:"Wyoming"},        // 6
-{n:"Angelo Ferrari ",s:"Iowa"},        // 7
-{n:"Silas Allred ",s:"Nebraska"},        // 8
-{n:"Chris Moore ",s:"Illinois"},        // 9
-{n:"Caleb Campos ",s:"American"},        // 10
-{n:"Shane Cartagena-Walsh ",s:"Rutgers"},        // 11
-{n:"Dylan Fishback ",s:"Ohio State"},        // 12
-{n:"Isaac Dean ",s:"Iowa State"},        // 13
-{n:"Jaden Bullock ",s:"Virginia Tech"},        // 14
-{n:"Sal Perrine ",s:"Ohio"},        // 15
-{n:"Rylan Rogers ",s:"Lehigh"},        // 16
-{n:"Ian Bush ",s:"West Virginia"},        // 17
-{n:"Jake Dailey ",s:"North Carolina"},        // 18
-{n:"Jared McGill ",s:"Edinboro"},        // 19
-{n:"Brian Soldano ",s:"Oklahoma"},        // 20
-{n:"Tomas Brooker ",s:"App State"},        // 21
-{n:"Zack Ryder ",s:"Oklahoma State"},        // 22
-{n:"Ceasar Garza ",s:"Cal Poly"},        // 23
-{n:"Joe Curtis ",s:"Columbia"},        // 24
-{n:"Malachi DuVall ",s:"George Mason"},        // 25
-{n:"Chase Kranitz ",s:"Pittsburgh"},        // 26
-{n:"Aiden Brenot ",s:"ND State"},        // 27
-{n:"Abraham Wojcikiewicz ",s:"Stanford"},        // 28
-{n:"Nick Fox ",s:"Northern Iowa"},        // 29
-{n:"Tyler Bienus ",s:"Bucknell"},        // 30
-{n:"Mahonri Rushton ",s:"N. Colorado"},        // 31
-{n:"Caleb Uhlenhopp ",s:"Utah Valley"},        // 32
-{n:"Sam Goin ",s:"Indiana"},        // 33 — pigtail
+{n:"Rocco Welsh ",s:"Penn State"},{n:"Aeoden Sinclair ",s:"Missouri"},{n:"Max McEnelly ",s:"Minnesota"},
+{n:"James Conway ",s:"Franklin & Marshall"},{n:"Brock Mantanona ",s:"Michigan"},{n:"Eddie Neitenbach ",s:"Wyoming"},
+{n:"Angelo Ferrari ",s:"Iowa"},{n:"Silas Allred ",s:"Nebraska"},{n:"Chris Moore ",s:"Illinois"},
+{n:"Caleb Campos ",s:"American"},{n:"Shane Cartagena-Walsh ",s:"Rutgers"},{n:"Dylan Fishback ",s:"Ohio State"},
+{n:"Isaac Dean ",s:"Iowa State"},{n:"Jaden Bullock ",s:"Virginia Tech"},{n:"Sal Perrine ",s:"Ohio"},
+{n:"Rylan Rogers ",s:"Lehigh"},{n:"Ian Bush ",s:"West Virginia"},{n:"Jake Dailey ",s:"North Carolina"},
+{n:"Jared McGill ",s:"Edinboro"},{n:"Brian Soldano ",s:"Oklahoma"},{n:"Tomas Brooker ",s:"App State"},
+{n:"Zack Ryder ",s:"Oklahoma State"},{n:"Ceasar Garza ",s:"Cal Poly"},{n:"Joe Curtis ",s:"Columbia"},
+{n:"Malachi DuVall ",s:"George Mason"},{n:"Chase Kranitz ",s:"Pittsburgh"},{n:"Aiden Brenot ",s:"ND State"},
+{n:"Abraham Wojcikiewicz ",s:"Stanford"},{n:"Nick Fox ",s:"Northern Iowa"},{n:"Tyler Bienus ",s:"Bucknell"},
+{n:"Mahonri Rushton ",s:"N. Colorado"},{n:"Caleb Uhlenhopp ",s:"Utah Valley"},{n:"Sam Goin ",s:"Indiana"},
   ],
   197: [
-    {n:"Josh Barr ",s:"Penn State"},        // 1
-{n:"Rocky Elam ",s:"Iowa State"},        // 2
-{n:"Stephen Little ",s:"Little Rock"},        // 3
-{n:"Sonny Sasso ",s:"Virginia Tech"},        // 4
-{n:"Joey Novak ",s:"Wyoming"},        // 5
-{n:"Justin Rademacher ",s:"Oregon State"},        // 6
-{n:"Cody Merrill ",s:"Oklahoma State"},        // 7
-{n:"Deanthony Parker ",s:"Oklahoma"},        // 8
-{n:"Angelo Posada ",s:"Stanford"},        // 9
-{n:"Mac Stout ",s:"Pittsburgh"},        // 10
-{n:"Camden McDanel ",s:"Nebraska"},        // 11
-{n:"Luke Geog ",s:"Ohio State"},        // 12
-{n:"Bennett Berge ",s:"SD State"},        // 13
-{n:"Gabe Sollars ",s:"Indiana"},        // 14
-{n:"Remy Cotton ",s:"Rutgers"},        // 15
-{n:"Branson John ",s:"Maryland"},        // 16
-{n:"Dillon Bechtold ",s:"Bucknell"},        // 17
-{n:"Andrew Reall ",s:"Brown"},        // 18
-{n:"Zayne Lehman ",s:"Ohio"},        // 19
-{n:"Wyatt Ingham ",s:"Wisconsin"},        // 20
-{n:"Rune Lawrence ",s:"West Virginia"},        // 21
-{n:"Devin Wasley ",s:"ND State"},        // 22
-{n:"Michael Squires ",s:"Binghamton"},        // 23
-{n:"Brock Zurawski ",s:"Rider"},        // 24
-{n:"Evan Bates ",s:"Missouri"},        // 25
-{n:"Ben Vanadia ",s:"Purdue"},        // 26
-{n:"Gabe Arnold ",s:"Iowa"},        // 27
-{n:"Kael Wisler ",s:"Michigan State"},        // 28
-{n:"Colton Hawks ",s:"Arizona State"},        // 29
-{n:"Kade Rule ",s:"Chattanooga"},        // 30
-{n:"Kael Bennie ",s:"Utah Valley"},        // 31
-{n:"Blake Schaffer ",s:"Kent State"},        // 32
-{n:"Karson Tompkins ",s:"Air Force"},        // 33 — pigtail
+{n:"Josh Barr ",s:"Penn State"},{n:"Rocky Elam ",s:"Iowa State"},{n:"Stephen Little ",s:"Little Rock"},
+{n:"Sonny Sasso ",s:"Virginia Tech"},{n:"Joey Novak ",s:"Wyoming"},{n:"Justin Rademacher ",s:"Oregon State"},
+{n:"Cody Merrill ",s:"Oklahoma State"},{n:"Deanthony Parker ",s:"Oklahoma"},{n:"Angelo Posada ",s:"Stanford"},
+{n:"Mac Stout ",s:"Pittsburgh"},{n:"Camden McDanel ",s:"Nebraska"},{n:"Luke Geog ",s:"Ohio State"},
+{n:"Bennett Berge ",s:"SD State"},{n:"Gabe Sollars ",s:"Indiana"},{n:"Remy Cotton ",s:"Rutgers"},
+{n:"Branson John ",s:"Maryland"},{n:"Dillon Bechtold ",s:"Bucknell"},{n:"Andrew Reall ",s:"Brown"},
+{n:"Zayne Lehman ",s:"Ohio"},{n:"Wyatt Ingham ",s:"Wisconsin"},{n:"Rune Lawrence ",s:"West Virginia"},
+{n:"Devin Wasley ",s:"ND State"},{n:"Michael Squires ",s:"Binghamton"},{n:"Brock Zurawski ",s:"Rider"},
+{n:"Evan Bates ",s:"Missouri"},{n:"Ben Vanadia ",s:"Purdue"},{n:"Gabe Arnold ",s:"Iowa"},
+{n:"Kael Wisler ",s:"Michigan State"},{n:"Colton Hawks ",s:"Arizona State"},{n:"Kade Rule ",s:"Chattanooga"},
+{n:"Kael Bennie ",s:"Utah Valley"},{n:"Blake Schaffer ",s:"Kent State"},{n:"Karson Tompkins ",s:"Air Force"},
   ],
   285: [
-   {n:"Yonger Bastida ",s:"Iowa State"},        // 1
-{n:"Isaac Trumble ",s:"NC State"},        // 2
-{n:"Taye Ghadiali ",s:"Michigan"},        // 3
-{n:"AJ Ferrari ",s:"Nebraska"},        // 4
-{n:"Nick Feldman ",s:"Ohio State"},        // 5
-{n:"Nathan Taylor ",s:"Lehigh"},        // 6
-{n:"Konner Doucet ",s:"Oklahoma State"},        // 7
-{n:"Ben Kueter ",s:"Iowa"},        // 8
-{n:"Cole Mirasola ",s:"Penn State"},        // 9
-{n:"David Szuba ",s:"Arizona State"},        // 10
-{n:"Devon Dawson ",s:"N. Illinois"},        // 11
-{n:"Braxton Amos ",s:"Wisconsin"},        // 12
-{n:"Spencer Lanosga ",s:"Navy"},        // 13
-{n:"Koy Hopke ",s:"Minnesota"},        // 14
-{n:"Brady Colbert ",s:"Army"},        // 15
-{n:"Jimmy Mullen ",s:"Virginia Tech"},        // 16
-{n:"Vincent Mueller ",s:"Columbia"},        // 17
-{n:"Christian Carroll ",s:"Wyoming"},        // 18
-{n:"Nate Schon ",s:"Drexel"},        // 19
-{n:"Dayton Pitzer ",s:"Pittsburgh"},        // 20
-{n:"Juan Mora ",s:"Oklahoma"},        // 21
-{n:"Trevor Tinker ",s:"Cal Poly"},        // 22
-{n:"Stephan Monchery ",s:"App State"},        // 23
-{n:"Connor Barket ",s:"Duke"},        // 24
-{n:"Alex Semenenko ",s:"Brown"},        // 25
-{n:"Luke Luffman ",s:"Illinois"},        // 26
-{n:"Hunter Catka ",s:"Rutgers"},        // 27
-{n:"Jarrett Stoner ",s:"Missouri"},        // 28
-{n:"Luke Rasmussen ",s:"SD State"},        // 29
-{n:"Jack Forbes ",s:"Utah Valley"},        // 30
-{n:"Brenan Morgan ",s:"Virginia"},        // 31
-{n:"Emmanuel Ulrich ",s:"American"},        // 32
-{n:"Mason Rebuck ",s:"Bloomsburg"},        // 33 — pigtail
+{n:"Yonger Bastida ",s:"Iowa State"},{n:"Isaac Trumble ",s:"NC State"},{n:"Taye Ghadiali ",s:"Michigan"},
+{n:"AJ Ferrari ",s:"Nebraska"},{n:"Nick Feldman ",s:"Ohio State"},{n:"Nathan Taylor ",s:"Lehigh"},
+{n:"Konner Doucet ",s:"Oklahoma State"},{n:"Ben Kueter ",s:"Iowa"},{n:"Cole Mirasola ",s:"Penn State"},
+{n:"David Szuba ",s:"Arizona State"},{n:"Devon Dawson ",s:"N. Illinois"},{n:"Braxton Amos ",s:"Wisconsin"},
+{n:"Spencer Lanosga ",s:"Navy"},{n:"Koy Hopke ",s:"Minnesota"},{n:"Brady Colbert ",s:"Army"},
+{n:"Jimmy Mullen ",s:"Virginia Tech"},{n:"Vincent Mueller ",s:"Columbia"},{n:"Christian Carroll ",s:"Wyoming"},
+{n:"Nate Schon ",s:"Drexel"},{n:"Dayton Pitzer ",s:"Pittsburgh"},{n:"Juan Mora ",s:"Oklahoma"},
+{n:"Trevor Tinker ",s:"Cal Poly"},{n:"Stephan Monchery ",s:"App State"},{n:"Connor Barket ",s:"Duke"},
+{n:"Alex Semenenko ",s:"Brown"},{n:"Luke Luffman ",s:"Illinois"},{n:"Hunter Catka ",s:"Rutgers"},
+{n:"Jarrett Stoner ",s:"Missouri"},{n:"Luke Rasmussen ",s:"SD State"},{n:"Jack Forbes ",s:"Utah Valley"},
+{n:"Brenan Morgan ",s:"Virginia"},{n:"Emmanuel Ulrich ",s:"American"},{n:"Mason Rebuck ",s:"Bloomsburg"},
   ],
 }
 
-// ─── BRACKET PAIRING ───────────────────────────────────────────────
-// 33-man field: Pigtail = seed 32 vs seed 33.
-// Winner of pigtail takes the "seed 32" slot against seed 1 in Round 1.
-// All other Round 1 pairings use seeds 1-31 in standard NCAA format.
-//
-// PAIRS[i] = [seedA-1, seedB-1] for championship Round 1 match i (0-indexed)
-// Match 0 is the #1 seed's match — 'b' slot will be filled by pigtail winner.
 const PAIRS = [
-  [0, null],   // 1 vs pigtail winner
-  [15,16],     // 16 vs 17
-  [8, 23],     // 9  vs 24
-  [7, 24],     // 8  vs 25
-  [4, 27],     // 5  vs 28
-  [11,20],     // 12 vs 21
-  [12,19],     // 13 vs 20
-  [3, 28],     // 4  vs 29
-  [2, 29],     // 3  vs 30
-  [13,18],     // 14 vs 19
-  [10,21],     // 11 vs 22
-  [5, 26],     // 6  vs 27
-  [6, 25],     // 7  vs 26    
-  [9, 22],     // 10 vs 23
-  [14,17],     // 15 vs 18
-  [30, 1],     // 2  vs 31
-
+  [0, null],[15,16],[8,23],[7,24],[4,27],[11,20],[12,19],[3,28],
+  [2,29],[13,18],[10,21],[5,26],[6,25],[9,22],[14,17],[30,1],
 ];
 
-// ═══ STATE ═══
-// champ[-1]  = pigtail match (seed 32 vs 33)
-// champ[0-4] = championship rounds (R1 has 16 matches)
-// con[0-4]   = consolation rounds
-// place3,5,7 = place matches
-// champion   = wrestler obj | null
-
 const states = {};
-// ─── helpers: find a PAIRS match by seed matchup (stable even if PAIRS order changes) ───
-function seedsFromPair(pair){
-  const [ai, bi] = pair;
-  const a = (ai==null) ? null : ai+1;
-  const b = (bi==null) ? null : bi+1;
-  return [a,b];
-}
-function isMatch(pair, s1, s2){
-  const [a,b] = seedsFromPair(pair);
-  return (a===s1 && b===s2) || (a===s2 && b===s1);
-}
-function findMatchIndexBySeeds(s1, s2){
-  return PAIRS.findIndex(p => isMatch(p, s1, s2));
-}
+const pickLog = {};
 
 function mkW(field, idx0) {
   const f = field[idx0];
@@ -931,102 +537,42 @@ function mkW(field, idx0) {
 }
 function mkMatch(a, b) { return {a, b, w:null}; }
 
+function seedsFromPair(pair){
+  const [ai, bi] = pair;
+  return [ai==null?null:ai+1, bi==null?null:bi+1];
+}
+function isMatch(pair, s1, s2){
+  const [a,b] = seedsFromPair(pair);
+  return (a===s1&&b===s2)||(a===s2&&b===s1);
+}
+function findMatchIndexBySeeds(s1, s2){
+  return PAIRS.findIndex(p => isMatch(p,s1,s2));
+}
+
 function initBracket(wt) {
   const F = FIELDS[wt];
-
-  // Pigtail: seed 32 (idx 31) vs seed 33 (idx 32)
   const pigtail = mkMatch(mkW(F,31), mkW(F,32));
-
-  // Round 1: slot 'a' for all matches from PAIRS; 'b' for match 0 is TBD (pigtail winner)
-  const r1 = PAIRS.map(([ai, bi], mi) => {
+  const r1 = PAIRS.map(([ai, bi]) => {
     const a = mkW(F, ai);
-    const b = (bi === null) ? null : mkW(F, bi);
+    const b = (bi===null) ? null : mkW(F, bi);
     return mkMatch(a, b);
   });
-  // ─────────────────────────────────────────────────────────────
-  // LOSER DROP MAP (seed-based, NCAA-correct & stable to PAIRS order)
-  // ─────────────────────────────────────────────────────────────
-  const mi_1vPT  = findMatchIndexBySeeds(1, 32); // this will be match 0 in your PAIRS (1 vs PT winner)
-  const mi_3v30  = findMatchIndexBySeeds(3, 30);
-  const mi_14v19 = findMatchIndexBySeeds(14, 19);
-
-  // Top half seeds and bottom half seeds (for cross-pairing Con Rd 1)
-  const TOP_HALF = new Set([1,16,8,9,4,13,5,12]);
-  const BOT_HALF = new Set([2,15,7,10,3,14,6,11]);
-
-  const topMis = [];
-  const botMis = [];
-
-  PAIRS.forEach((pair, mi) => {
-    // skip special routes handled separately:
-    // - 1 vs PT (mi_1vPT)
-    // - 3 vs 30 (mi_3v30)
-    // - 14 vs 19 (mi_14v19)
-    if (mi === mi_1vPT || mi === mi_3v30 || mi === mi_14v19) return;
-
-    const [a,b] = seedsFromPair(pair);
-    const seeds = [a,b].filter(Boolean);
-
-    if (seeds.some(s => TOP_HALF.has(s))) topMis.push(mi);
-    else if (seeds.some(s => BOT_HALF.has(s))) botMis.push(mi);
-  });
-
-  // We need 7 cross-pairs feeding con[0][0..6].
-  // Bottom pool is short by 1 once we remove (3v30) and (14v19),
-  // so we use the loser of (1 vs PT) as the 7th "bottom" participant.
-  botMis.push(mi_1vPT);
-
-  const loserDrop = Array.from({length:16}, () => null);
-
-  // Special drops:
-  // loser(3v30) -> conPigtail.b  (faces pigtail loser)
-  loserDrop[mi_3v30]  = { type:'conPigtail', slot:'b' };
-
-  // loser(14v19) -> con[0][7].b (faces conPigtail winner)
-  loserDrop[mi_14v19] = { type:'conR1', idx:7, slot:'b' };
-
-  // Cross-pairs:
-  // topMis[i] loser -> con[0][i].a
-  // botMis[i] loser -> con[0][i].b
-  for (let i=0; i<7; i++){
-    loserDrop[topMis[i]] = { type:'conR1', idx:i, slot:'a' };
-    loserDrop[botMis[i]] = { type:'conR1', idx:i, slot:'b' };
-  }
-
   const r2 = Array.from({length:8},  ()=>mkMatch(null,null));
   const r3 = Array.from({length:4},  ()=>mkMatch(null,null));
   const r4 = Array.from({length:2},  ()=>mkMatch(null,null));
   const r5 = [mkMatch(null,null)];
-
-  // Consolation structure (correct NCAA routing):
-  //
-  // conPigtail: 1 match — pigtail loser vs loser of 3v30 (champ R1 mi=12)
-  //
-  // con[0] = Con Rd 1: 8 matches
-  //   7 matches: remaining R1 losers cross-paired (mi 1-7 top vs mi 8-11,14-15 bottom)
-  //   1 match: conPigtail winner vs loser of 14v19 (champ R1 mi=13)
-  //
-  // con[1] = Con Rd 2: 8 matches — con[0] winners vs Champ Rd 2 losers
-  // con[2] = Con Rd 3: 4 matches — con[1] winners paired with Champ QF losers
-  // con[3] = Con Rd 4: 4 matches — con[2] winners
-  // con[4] = Con Semis: 2 matches
- const con = [
-  Array.from({length:8}, ()=>mkMatch(null,null)),  // con[0] Con Rd 1
-  Array.from({length:8}, ()=>mkMatch(null,null)),  // con[1] Con Rd 2
-  Array.from({length:4}, ()=>mkMatch(null,null)),  // con[2] Con Rd 3
-  Array.from({length:4}, ()=>mkMatch(null,null)),  // con[3] Con Rd 4
-  Array.from({length:2}, ()=>mkMatch(null,null)),  // con[4] Con Quarters  ✅ NEW
-  Array.from({length:2}, ()=>mkMatch(null,null)),  // con[5] Con Semis     ✅ NEW
-];
-
+  const con = [
+    Array.from({length:8}, ()=>mkMatch(null,null)),
+    Array.from({length:8}, ()=>mkMatch(null,null)),
+    Array.from({length:4}, ()=>mkMatch(null,null)),
+    Array.from({length:4}, ()=>mkMatch(null,null)),
+    Array.from({length:2}, ()=>mkMatch(null,null)),
+    Array.from({length:2}, ()=>mkMatch(null,null)),
+  ];
   states[wt] = {
-    pigtail,
-    conPigtail: mkMatch(null,null),  // pigtail loser vs loser of 3v30
-    champ: [r1,r2,r3,r4,r5],
-    con,
-    place3: mkMatch(null,null),
-    place5: mkMatch(null,null),
-    place7: mkMatch(null,null),
+    pigtail, conPigtail: mkMatch(null,null),
+    champ: [r1,r2,r3,r4,r5], con,
+    place3: mkMatch(null,null), place5: mkMatch(null,null), place7: mkMatch(null,null),
     champion: null
   };
 }
@@ -1035,10 +581,6 @@ function getS(wt) {
   if (!states[wt]) initBracket(wt);
   return states[wt];
 }
-
-// ═══ PICK WINNER ═══
-// Each pick is logged so we can replay with a swap
-const pickLog = {}; // wt → [{bracket, ri, mi, slot}, ...]
 
 function pick(wt, bracket, ri, mi, slot) {
   const st = getS(wt);
@@ -1050,44 +592,24 @@ function pick(wt, bracket, ri, mi, slot) {
   else if (bracket==='p3')         match = st.place3;
   else if (bracket==='p5')         match = st.place5;
   else if (bracket==='p7')         match = st.place7;
-
   if (!match || !match.a || !match.b) return;
   if (match.w) return;
-
-  // Log this pick
   if (!pickLog[wt]) pickLog[wt] = [];
   pickLog[wt].push({bracket, ri, mi, slot});
-
   applyPick(st, bracket, ri, mi, slot);
   render();
   if (showScores) renderScores();
+  if (showAA) renderAllAmericans();
 }
 
-// swap: change the winner of an already-decided match.
-// Strategy: reset bracket, replay all prior picks, replace the swapped pick with opposite slot,
-// then drop all picks that came AFTER this match in the log (they depended on the old result).
 function swap(wt, bracket, ri, mi, newWinnerSlot) {
   const log = pickLog[wt] || [];
-
-  // Find this pick in the log
-  const idx = log.findIndex(p =>
-    p.bracket === bracket && p.ri === ri && p.mi === mi &&
-    (bracket === 'pigtail' || bracket === 'conPigtail' || (p.bracket === bracket))
-  );
-  if (idx === -1) return;
-
-  // Build new log: keep everything before this pick, change this one, drop everything after
-  const newLog = [
-    ...log.slice(0, idx),
-    {bracket, ri, mi, slot: newWinnerSlot}
-  ];
-
-  // Reset and replay
+  const idx = log.findIndex(p => p.bracket===bracket && p.ri===ri && p.mi===mi);
+  if (idx===-1) return;
+  const newLog = [...log.slice(0,idx), {bracket,ri,mi,slot:newWinnerSlot}];
   delete states[wt];
   pickLog[wt] = [];
-
   newLog.forEach(p => pick(wt, p.bracket, p.ri, p.mi, p.slot));
-  // render() is called inside pick(), so we're good
 }
 
 function applyPick(st, bracket, ri, mi, slot) {
@@ -1099,258 +621,140 @@ function applyPick(st, bracket, ri, mi, slot) {
   else if (bracket==='p3')         match = st.place3;
   else if (bracket==='p5')         match = st.place5;
   else if (bracket==='p7')         match = st.place7;
-
   if (!match || !match.a || !match.b || match.w) return;
-
   const winner = slot==='a' ? match.a : match.b;
   const loser  = slot==='a' ? match.b : match.a;
   match.w = slot;
-
   if (bracket==='pigtail') {
-    // Winner → #1 seed's R1 match
     st.champ[0][0].b = winner;
-    // Loser → conPigtail 'a' slot (faces loser of 3v30, champ R1 mi=12)
     st.conPigtail.a = loser;
-  }
-  else if (bracket==='conPigtail') {
-    
+  } else if (bracket==='conPigtail') {
     st.con[0][4].a = winner;
-    // Loser eliminated
-  }
-  else if (bracket==='champ') advanceChamp(st, ri, mi, winner, loser);
+  } else if (bracket==='champ') advanceChamp(st, ri, mi, winner, loser);
   else if (bracket==='con')   advanceCon(st, ri, mi, winner, loser);
 }
 
 function advanceChamp(st, ri, mi, winner, loser) {
-  // Advance winner up championship bracket
   if (ri < 4) {
     const nm = st.champ[ri+1][Math.floor(mi/2)];
     if (mi%2===0) nm.a = winner; else nm.b = winner;
   } else {
     st.champion = winner;
   }
-
-  // Route loser to consolation
- if (ri === 0) {
-  // mi index reference from your PAIRS:
-  // mi 0 = 1 vs pigtail winner
-  // mi 1 = 16 vs 17
-  // mi 8 = 3 vs 30   (your special con-pigtail drop)
-  //
-  // Con Rd 1 has 8 matches: con[0][0..7]
-  // con[0][0] is reserved for (mi0 loser) vs (mi1 loser)
-  // conPigtail winner feeds con[0][7].a (already handled in applyPick for 'conPigtail')
-
-  if (mi === 0) {                 // 1 vs pigtail winner
-    st.con[0][0].a = loser;
-    return;
-  }
-  if (mi === 1) {                 // 16 vs 17
-    st.con[0][0].b = loser;
-    return;
-  }
-  if (mi === 2) {                 
-    st.con[0][1].a = loser;
-    return;
-  }
-  if (mi === 3) {                 
-    st.con[0][1].b = loser;
-    return;
-  }
-  if (mi === 4) {                 
-    st.con[0][2].a = loser;
-    return;
-  }
-  if (mi === 5) {                 
-    st.con[0][2].b = loser;
-    return;
-  }
-  if (mi === 6) {                
-    st.con[0][3].a = loser;
-    return;
-  }
-  if (mi === 7) {                 
-    st.con[0][3].b = loser;
-    return;
-  }
-  if (mi === 8) {                 // 3 vs 30
-    st.conPigtail.b = loser;      // conPigtail.a comes from pigtail loser
-    return;
-  }
-if (mi === 9) {                
-    st.con[0][4].b = loser;
-    return;
-  }
-  if (mi === 10) {                 
-    st.con[0][5].a = loser;
-    return;
-  }
-if (mi === 11) {                
-    st.con[0][5].b = loser;
-    return;
-  }
-  if (mi === 12) {                 
-    st.con[0][6].a = loser;
-    return;
-  }
-if (mi === 13) {                
-    st.con[0][6].b = loser;
-    return;
-  }
-  if (mi === 14) {                 
-    st.con[0][7].a = loser;
-    return;
-  }
-if (mi === 15) {                
-    st.con[0][7].b = loser;
-    return;
-
+  if (ri===0) {
+    if (mi===0){st.con[0][0].a=loser;return}
+    if (mi===1){st.con[0][0].b=loser;return}
+    if (mi===2){st.con[0][1].a=loser;return}
+    if (mi===3){st.con[0][1].b=loser;return}
+    if (mi===4){st.con[0][2].a=loser;return}
+    if (mi===5){st.con[0][2].b=loser;return}
+    if (mi===6){st.con[0][3].a=loser;return}
+    if (mi===7){st.con[0][3].b=loser;return}
+    if (mi===8){st.conPigtail.b=loser;return}
+    if (mi===9){st.con[0][4].b=loser;return}
+    if (mi===10){st.con[0][5].a=loser;return}
+    if (mi===11){st.con[0][5].b=loser;return}
+    if (mi===12){st.con[0][6].a=loser;return}
+    if (mi===13){st.con[0][6].b=loser;return}
+    if (mi===14){st.con[0][7].a=loser;return}
+    if (mi===15){st.con[0][7].b=loser;return}
+  } else if (ri===1) {
+    const dropMap={0:{m:7,slot:'a'},1:{m:6,slot:'a'},2:{m:5,slot:'a'},3:{m:4,slot:'a'},4:{m:3,slot:'a'},5:{m:2,slot:'a'},6:{m:1,slot:'a'},7:{m:0,slot:'a'}};
+    const d=dropMap[mi];
+    if(d) st.con[1][d.m][d.slot]=loser;
+  } else if (ri===2) {
+    const qfToCon4=[1,0,3,2];
+    st.con[3][qfToCon4[mi]].a=loser;
+  } else if (ri===3) {
+    const sfToConSemi=[1,0];
+    st.con[5][sfToConSemi[mi]].a=loser;
   }
 }
- else if (ri === 1) {
-  // Champ R2 has 8 matches: mi 0..7
-  // Remap losers into Cons Rd 2 (con[1]) in a "cross bracket" pattern.
-  // Edit this map to match EXACT NCAA placement you want.
-const dropMap = {
-  0: { m: 7, slot: 'a' }, // cross
-  1: { m: 6, slot: 'a' },
-  2: { m: 5, slot: 'a' },
-  3: { m: 4, slot: 'a' },
-  4: { m: 3, slot: 'a' },
-  5: { m: 2, slot: 'a' },
-  6: { m: 1, slot: 'a' },
-  7: { m: 0, slot: 'a' },
-};
 
-  const d = dropMap[mi];
-  if (d) st.con[1][d.m][d.slot] = loser;
-}
-else if (ri === 2) {
-  // QF losers → Cons Rd 4 (con[3]) using NCAA-style lane order
-  const qfToCon4 = [1, 0, 3, 2];   // QF0->Con4[1], QF1->Con4[0], QF2->Con4[3], QF3->Con4[2]
-  st.con[3][qfToCon4[mi]].a = loser;   // losers are ALWAYS the .a side in Cons4
-}  
-else if (ri === 3) {
-  // Champ SF losers -> Cons Semis (con[5]) on the "a" side, CROSS-LANED
-  // mi 0 loser goes to con[5][1].a
-  // mi 1 loser goes to con[5][0].a
-  const sfToConSemi = [1, 0];
-  st.con[5][sfToConSemi[mi]].a = loser;
-}
-}
-
-function advanceCon(st, ri, mi, winner,loser) {
-  if (ri === 0) {
-    st.con[1][mi].b = winner;
+function advanceCon(st, ri, mi, winner, loser) {
+  if (ri===0) {
+    st.con[1][mi].b=winner;
+  } else if (ri===1) {
+    const nm=st.con[2][Math.floor(mi/2)];
+    if(mi%2===0) nm.b=winner; else nm.a=winner;
+  } else if (ri===2) {
+    st.con[3][mi].b=winner;
+  } else if (ri===3) {
+    const nm=st.con[4][Math.floor(mi/2)];
+    if(mi%2===0) nm.a=winner; else nm.b=winner;
+  } else if (ri===4) {
+    st.con[5][mi].b=winner;
+    if (!st.place7.a) st.place7.a=loser; else st.place7.b=loser;
+  } else if (ri===5) {
+    if (!st.place3.a) st.place3.a=winner; else st.place3.b=winner;
+    if (!st.place5.a) st.place5.a=loser;  else st.place5.b=loser;
   }
-  else if (ri === 1) {
-    const nm = st.con[2][Math.floor(mi/2)];
-    if (mi % 2 === 0) nm.b = winner; else nm.a = winner;
-  }
-else if (ri === 2) {
-  const qfToCon4 = [0,1,2,3];
-  st.con[3][qfToCon4[mi]].b = winner;
-}
-  else if (ri === 3) {
-    // ✅ Con Rd 4 winners -> NEW Con Quarters (2 matches)
-    const nm = st.con[4][Math.floor(mi/2)];
-    if (mi % 2 === 0) nm.a = winner; else nm.b = winner;
-  }
- else if (ri === 4) {
-  // Con Quarters winners -> Con Semis as opponent vs Champ SF loser
-  st.con[5][mi].b = winner;
-
-  // Con Quarters losers -> 7th/8th place match
-  if (!st.place7.a) st.place7.a = loser;
-  else st.place7.b = loser;
-}
-  else if (ri === 5) {
-  // Consolation Semis:
-  // winner -> 3rd place match
-  // loser  -> 5th place match
-
-  if (!st.place3.a) st.place3.a = winner;
-  else st.place3.b = winner;
-
-  if (!st.place5.a) st.place5.a = loser;
-  else st.place5.b = loser;
-}
 }
 
-// ═══════════════════════════════════════════════
-// RENDERING
-// ═══════════════════════════════════════════════
 let CW = 125;
-
 const WLIST = [125,133,141,149,157,165,174,184,197,285];
 const CHAMP_RND_NAMES = ['Round 1','Rd of 16','Quarterfinals','Semifinals','Finals'];
 const CON_RND_NAMES   = ['Con. Rd 1','Con. Rd 2','Con. Rd 3','Con. Rd 4','Con. Qtrs','Con. Semis'];
 
 function renderWeightTabs() {
   const weightBtns = WLIST.map(w=>
-    `<button class="wtab ${w===CW && !showScores?'on':''}" onclick="switchW(${w})">${w}</button>`
+    `<button class="wtab ${w===CW && !showScores && !showAA?'on':''}" onclick="switchW(${w})">${w}</button>`
   ).join('');
   const scoreBtn = `<button class="wtab scores-tab ${showScores?'on':''}" onclick="switchScores()">🏆 Scores</button>`;
-  document.getElementById('wtabs').innerHTML = weightBtns + scoreBtn;
+  const aaBtn    = `<button class="wtab aa-tab ${showAA?'on':''}" onclick="switchAA()">⭐ All-Americans</button>`;
+  document.getElementById('wtabs').innerHTML = weightBtns + scoreBtn + aaBtn;
 }
 
 let showScores = false;
+let showAA = false;
 
 function switchW(w) {
-  CW = w;
-  showScores = false;
-  document.getElementById('area').style.display = 'flex';
+  CW=w; showScores=false; showAA=false;
+  document.getElementById('area').style.display='flex';
   document.getElementById('scores-view').classList.remove('active');
-  renderWeightTabs();
-  render();
+  document.getElementById('aa-view').classList.remove('active');
+  renderWeightTabs(); render();
 }
-
 function switchScores() {
-  showScores = true;
-  document.getElementById('area').style.display = 'none';
+  showScores=true; showAA=false;
+  document.getElementById('area').style.display='none';
   document.getElementById('scores-view').classList.add('active');
-  renderWeightTabs();
-  renderScores();
+  document.getElementById('aa-view').classList.remove('active');
+  renderWeightTabs(); renderScores();
+}
+function switchAA() {
+  showAA=true; showScores=false;
+  document.getElementById('area').style.display='none';
+  document.getElementById('scores-view').classList.remove('active');
+  document.getElementById('aa-view').classList.add('active');
+  renderWeightTabs(); renderAllAmericans();
 }
 
 function resetBracket() {
-  delete states[CW];
-  delete pickLog[CW];
-  renderWeightTabs();
-  render();
+  delete states[CW]; delete pickLog[CW];
+  renderWeightTabs(); render();
   if (showScores) renderScores();
+  if (showAA) renderAllAmericans();
 }
 
-// Build a wrestler slot HTML
 function slotHTML(m, which, bkt, ri, mi) {
-  const wr = m[which];
-  const other = which==='a' ? 'b' : 'a';
-  const isWin = m.w === which;
-  const isLos = m.w && m.w !== which;
-  const hasOther = !!m[other];
-
+  const wr=m[which];
+  const other=which==='a'?'b':'a';
+  const isWin=m.w===which;
+  const isLos=m.w&&m.w!==which;
+  const hasOther=!!m[other];
   if (!wr) return `<div class="sl empty"><span class="sl-tbd">TBD</span></div>`;
-
-  const canPick = !m.w && wr && hasOther;
-  const canSwap = isLos; // loser can be clicked to swap
-  const cls = `sl ${isWin?'w':''} ${isLos?'l':''}`.trim();
-  const nameParts = wr.n.split(' ');
-  const fn = nameParts[0];
-  const ln = nameParts.slice(1).join(' ');
-  const seedStr = wr.seed <= 16 ? wr.seed : '';
-
-  let onclick = '';
-  let title = '';
-  if (canPick) {
-    onclick = `onclick="pick(${CW},'${bkt}',${ri},${mi},'${which}')"`;
-    title = `title="Advance ${wr.n}"`;
-  } else if (canSwap) {
-    onclick = `onclick="swap(${CW},'${bkt}',${ri},${mi},'${which}')"`;
-    title = `title="Switch winner to ${wr.n}"`;
-  }
-
-  const swapHint = canSwap ? `<span class="swap-hint">↺ change</span>` : '';
-
+  const canPick=!m.w&&wr&&hasOther;
+  const canSwap=isLos;
+  const cls=`sl ${isWin?'w':''} ${isLos?'l':''}`.trim();
+  const nameParts=wr.n.split(' ');
+  const fn=nameParts[0];
+  const ln=nameParts.slice(1).join(' ');
+  const seedStr=wr.seed<=16?wr.seed:'';
+  let onclick='',title='';
+  if(canPick){onclick=`onclick="pick(${CW},'${bkt}',${ri},${mi},'${which}')"`;title=`title="Advance ${wr.n}"`;}
+  else if(canSwap){onclick=`onclick="swap(${CW},'${bkt}',${ri},${mi},'${which}')"`;title=`title="Switch winner to ${wr.n}"`;}
+  const swapHint=canSwap?`<span class="swap-hint">↺ change</span>`:'';
   return `<div class="${cls}" ${onclick} ${title}>
     <span class="sl-sd">${seedStr}</span>
     <span class="sl-nm"><span class="fn">${fn}</span> <strong>${ln||fn}</strong></span>
@@ -1361,295 +765,167 @@ function slotHTML(m, which, bkt, ri, mi) {
 
 function matchHTML(m, bkt, ri, mi, extra='') {
   if (!m) return '';
-  return `<div class="mc ${extra}">
-    ${slotHTML(m,'a',bkt,ri,mi)}
-    <div class="md"></div>
-    ${slotHTML(m,'b',bkt,ri,mi)}
-  </div>`;
+  return `<div class="mc ${extra}">${slotHTML(m,'a',bkt,ri,mi)}<div class="md"></div>${slotHTML(m,'b',bkt,ri,mi)}</div>`;
 }
 
-function getWinner(m) { return m && m.w ? m[m.w] : null; }
-function getLoser(m)  { return m && m.w ? m[m.w==='a'?'b':'a'] : null; }
+function getWinner(m){return m&&m.w?m[m.w]:null;}
+function getLoser(m){return m&&m.w?m[m.w==='a'?'b':'a']:null;}
 
 function getAllAmericans(st) {
-  // Places 1-8 sources:
-  // 1st: champion
-  // 2nd: champ final loser
-  // 3rd: place3 winner
-  // 4th: place3 loser
-  // 5th: place5 winner
-  // 6th: place5 loser
-  // 7th: place7 winner
-  // 8th: place7 loser
-  const champFinal = st.champ[4][0];
+  const champFinal=st.champ[4][0];
   return [
-    { place:1, medal:'🥇', wr: st.champion },
-    { place:2, medal:'🥈', wr: getLoser(champFinal) },
-    { place:3, medal:'🥉', wr: getWinner(st.place3) },
-    { place:4, medal:'4',  wr: getLoser(st.place3) },
-    { place:5, medal:'5',  wr: getWinner(st.place5) },
-    { place:6, medal:'6',  wr: getLoser(st.place5) },
-    { place:7, medal:'7',  wr: getWinner(st.place7) },
-    { place:8, medal:'8',  wr: getLoser(st.place7) },
+    {place:1,medal:'🥇',wr:st.champion},
+    {place:2,medal:'🥈',wr:getLoser(champFinal)},
+    {place:3,medal:'🥉',wr:getWinner(st.place3)},
+    {place:4,medal:'4', wr:getLoser(st.place3)},
+    {place:5,medal:'5', wr:getWinner(st.place5)},
+    {place:6,medal:'6', wr:getLoser(st.place5)},
+    {place:7,medal:'7', wr:getWinner(st.place7)},
+    {place:8,medal:'8', wr:getLoser(st.place7)},
   ];
 }
 
-function champBox(st) {
-  const champion = st.champion;
+// ═══════════════════════════════════════════════
+// ALL-AMERICANS VIEW RENDERING
+// ═══════════════════════════════════════════════
+const MEDALS = ['','🥇','🥈','🥉','','','','',''];
+
+function buildAACard(wt) {
+  const st = getS(wt);
   const aa = getAllAmericans(st);
-  const anyAA = aa.some(r => r.wr);
-
-  const champCard = champion
-    ? `<div class="ccard">
-        <div class="crn">🏆</div>
-        <div class="clbl">Champion</div>
-        <div class="cnm">${champion.n}</div>
-        <div class="csc">${champion.s}</div>
-      </div>`
-    : `<div class="ccard empty">
-        <div class="crn">🏆</div>
-        <div class="clbl">Champion</div>
-        <div class="cnm">Undecided</div>
-      </div>`;
-
-  if (!anyAA) {
-    return `<div class="cbox"><div>${champCard}</div></div>`;
-  }
-
-  const rows = aa.map(({place, medal, wr}) => {
-    const isMedal = place <= 3;
-    const medalDisplay = isMedal ? medal : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--t3)">${place}</span>`;
+  const rows = aa.map(({place, wr}) => {
+    const medal = place <= 3 ? MEDALS[place] : '';
     const nameHtml = wr
-      ? `<div class="aa-name">${wr.n}</div><div class="aa-school">${wr.s}</div>`
-      : `<div class="aa-tbd">TBD</div>`;
-    return `<div class="aa-row place-${place}">
-      <div class="aa-medal">${medalDisplay}</div>
-      <div class="aa-info">${nameHtml}</div>
+      ? `<div class="aa-wcard-name">${wr.n.trim()}</div><div class="aa-wcard-school">${wr.s}</div>`
+      : `<div class="aa-wcard-tbd">TBD</div>`;
+    return `<div class="aa-wcard-row place-${place}">
+      <div class="aa-wcard-place">${place}</div>
+      <div class="aa-wcard-medal">${medal}</div>
+      <div class="aa-wcard-info">${nameHtml}</div>
     </div>`;
   }).join('');
-
-  const aaPanel = `<div class="aa-panel">
-    <div class="aa-hdr">
-      <div class="aa-hdr-t">All-Americans</div>
-      <div class="aa-hdr-s">Top 8 Finishers</div>
+  return `<div class="aa-wcard">
+    <div class="aa-wcard-hdr">
+      <span class="aa-wcard-wt">${wt}</span>
+      <span class="aa-wcard-lbs">lbs</span>
     </div>
     ${rows}
   </div>`;
+}
 
+function renderAllAmericans() {
+  const row1 = [125,133,141,149,157];
+  const row2 = [165,174,184,197,285];
+  document.getElementById('aa-grid-125-157').innerHTML =
+    `<div class="aa-row-grid">${row1.map(buildAACard).join('')}</div>`;
+  document.getElementById('aa-grid-165-285').innerHTML =
+    `<div class="aa-row-grid">${row2.map(buildAACard).join('')}</div>`;
+}
+
+function champBox(st) {
+  const champion=st.champion;
+  const aa=getAllAmericans(st);
+  const anyAA=aa.some(r=>r.wr);
+  const champCard=champion
+    ?`<div class="ccard"><div class="crn">🏆</div><div class="clbl">Champion</div><div class="cnm">${champion.n}</div><div class="csc">${champion.s}</div></div>`
+    :`<div class="ccard empty"><div class="crn">🏆</div><div class="clbl">Champion</div><div class="cnm">Undecided</div></div>`;
+  if(!anyAA) return `<div class="cbox"><div>${champCard}</div></div>`;
+  const rows=aa.map(({place,medal,wr})=>{
+    const isMedal=place<=3;
+    const medalDisplay=isMedal?medal:`<span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--t3)">${place}</span>`;
+    const nameHtml=wr?`<div class="aa-name">${wr.n}</div><div class="aa-school">${wr.s}</div>`:`<div class="aa-tbd">TBD</div>`;
+    return `<div class="aa-row place-${place}"><div class="aa-medal">${medalDisplay}</div><div class="aa-info">${nameHtml}</div></div>`;
+  }).join('');
+  const aaPanel=`<div class="aa-panel"><div class="aa-hdr"><div class="aa-hdr-t">All-Americans</div><div class="aa-hdr-s">Top 8 Finishers</div></div>${rows}</div>`;
   return `<div class="cbox"><div>${champCard}</div>${aaPanel}</div>`;
 }
 
 function render() {
-  const st = getS(CW);
-  const MH = 68, GAP = 6;
-
-  // ── CHAMPIONSHIP ──
-  let html = `<div class="sec-hd sec-champ"><div class="line"></div><div class="lbl">Championship Bracket</div><div class="line"></div></div>`;
-  html += `<div class="bgrid">`;
-
-  // ── PIGTAIL COLUMN ──
-  // Vertically aligned to match where Round 1 match 0 (the #1 seed) will sit
-  html += `<div class="rcol">
-    <div class="rhdr gc" style="color:var(--gold);opacity:.7">Pigtail</div>
-    <div style="display:flex;flex-direction:column;">
-      <div style="margin-bottom:${GAP}px;">
-        ${matchHTML(st.pigtail,'pigtail',0,0,'pt')}
-      </div>
-    </div>
-  </div>`;
-  // Arrow connector
-  html += `<div class="rconn" style="display:flex;align-items:flex-start;padding-top:${MH/2-6}px;">
-    <div style="font-size:10px;color:var(--gold);opacity:.5;">→</div>
-  </div>`;
-
-  // ── CHAMPIONSHIP ROUNDS ──
-  st.champ.forEach((round, ri) => {
-    const sp = Math.pow(2, ri);
-    html += `<div class="rcol"><div class="rhdr gc">${CHAMP_RND_NAMES[ri]}</div><div>`;
-    round.forEach((m, mi) => {
-      const mt = mi===0 ? (sp-1)*(MH+GAP)/2 : (sp-1)*(MH+GAP);
-      // Mark the #1 seed match specially until pigtail is done
-      const isOne = ri===0 && mi===0;
-      const extraCls = ri===4 ? 'cm' : (isOne && !st.pigtail.w ? 'pt-pending' : '');
-      html += `<div style="margin-top:${mt}px;margin-bottom:${GAP}px">
-        ${matchHTML(m,'champ',ri,mi, extraCls)}
-      </div>`;
+  const st=getS(CW);
+  const MH=68, GAP=6;
+  let html=`<div class="sec-hd sec-champ"><div class="line"></div><div class="lbl">Championship Bracket</div><div class="line"></div></div>`;
+  html+=`<div class="bgrid">`;
+  html+=`<div class="rcol"><div class="rhdr gc" style="color:var(--gold);opacity:.7">Pigtail</div><div style="display:flex;flex-direction:column;"><div style="margin-bottom:${GAP}px;">${matchHTML(st.pigtail,'pigtail',0,0,'pt')}</div></div></div>`;
+  html+=`<div class="rconn" style="display:flex;align-items:flex-start;padding-top:${MH/2-6}px;"><div style="font-size:10px;color:var(--gold);opacity:.5;">→</div></div>`;
+  st.champ.forEach((round,ri)=>{
+    const sp=Math.pow(2,ri);
+    html+=`<div class="rcol"><div class="rhdr gc">${CHAMP_RND_NAMES[ri]}</div><div>`;
+    round.forEach((m,mi)=>{
+      const mt=mi===0?(sp-1)*(MH+GAP)/2:(sp-1)*(MH+GAP);
+      const isOne=ri===0&&mi===0;
+      const extraCls=ri===4?'cm':(isOne&&!st.pigtail.w?'pt-pending':'');
+      html+=`<div style="margin-top:${mt}px;margin-bottom:${GAP}px">${matchHTML(m,'champ',ri,mi,extraCls)}</div>`;
     });
-    html += `</div></div><div class="rconn"></div>`;
+    html+=`</div></div><div class="rconn"></div>`;
   });
-
-  html += champBox(st);
-  html += `</div>`;
-
-  // ── CONSOLATION ──
-  html += `<div class="sec-hd sec-con"><div class="line"></div><div class="lbl">⬇ Consolation Bracket — Losers Drop Here</div><div class="line"></div></div>`;
-  html += `<div class="bgrid" style="align-items:flex-start">`;
-
-  // Spacer to align con bracket under champ bracket pigtail + connector
-  // html += `<div style="width:${168+14}px;flex-shrink:0;"></div>`;
-
-  // ── CON PIGTAIL COLUMN ──
-  // pigtail loser vs loser of 3v30 — shows once either is populated
-  const cpHasData = st.conPigtail.a || st.conPigtail.b;
-  html += `<div class="rcol">
-    <div class="rhdr cc" style="opacity:.7">Con Pigtail</div>
-    <div style="display:flex;flex-direction:column;">
-      <div style="margin-bottom:${GAP}px;">
-        ${cpHasData
-          ? matchHTML(st.conPigtail,'conPigtail',0,0,'con pt')
-          : `<div style="min-width:168px;padding:8px;font-size:9px;color:var(--t3);font-style:italic">Awaiting pigtail & 3v30…</div>`
-        }
-      </div>
-    </div>
-  </div>`;
-  html += `<div class="rconn" style="display:flex;align-items:flex-start;padding-top:${MH/2-6}px;">
-    <div style="font-size:10px;color:var(--orange);opacity:.4;">→</div>
-  </div>`;
-
-  // ── CON ROUNDS ──
-  st.con.forEach((round, ri) => {
-    html += `<div class="rcol"><div class="rhdr cc">${CON_RND_NAMES[ri]}</div><div style="display:flex;flex-direction:column;gap:${GAP}px">`;
-    const hasData = round.some(m=>m.a||m.b);
-    if (!hasData) {
-      html += `<div style="min-width:168px;padding:10px 8px;font-size:9px;color:var(--t3);font-style:italic">Awaiting results…</div>`;
-    } else {
-      round.forEach((m, mi) => {
-  html += `<div>${matchHTML(m,'con',ri,mi,'con')}</div>`;
-});
-    }
-    html += `</div></div><div class="rconn"></div>`;
+  html+=champBox(st);
+  html+=`</div>`;
+  html+=`<div class="sec-hd sec-con"><div class="line"></div><div class="lbl">⬇ Consolation Bracket — Losers Drop Here</div><div class="line"></div></div>`;
+  html+=`<div class="bgrid" style="align-items:flex-start">`;
+  const cpHasData=st.conPigtail.a||st.conPigtail.b;
+  html+=`<div class="rcol"><div class="rhdr cc" style="opacity:.7">Con Pigtail</div><div style="display:flex;flex-direction:column;"><div style="margin-bottom:${GAP}px;">${cpHasData?matchHTML(st.conPigtail,'conPigtail',0,0,'con pt'):`<div style="min-width:168px;padding:8px;font-size:9px;color:var(--t3);font-style:italic">Awaiting pigtail & 3v30…</div>`}</div></div></div>`;
+  html+=`<div class="rconn" style="display:flex;align-items:flex-start;padding-top:${MH/2-6}px;"><div style="font-size:10px;color:var(--orange);opacity:.4;">→</div></div>`;
+  st.con.forEach((round,ri)=>{
+    html+=`<div class="rcol"><div class="rhdr cc">${CON_RND_NAMES[ri]}</div><div style="display:flex;flex-direction:column;gap:${GAP}px">`;
+    const hasData=round.some(m=>m.a||m.b);
+    if(!hasData){html+=`<div style="min-width:168px;padding:10px 8px;font-size:9px;color:var(--t3);font-style:italic">Awaiting results…</div>`;}
+    else{round.forEach((m,mi)=>{html+=`<div>${matchHTML(m,'con',ri,mi,'con')}</div>`;});}
+    html+=`</div></div><div class="rconn"></div>`;
   });
-
-  // Place matches
-  html += `<div class="rcol"><div class="rhdr" style="color:#cd7f32">Place Matches</div><div style="display:flex;flex-direction:column;gap:10px">`;
-  
-  const placeMatches = [
-    {m:st.place3, bkt:'p3', lbl:'🥉 3rd Place', cls:'pm'},
-    {m:st.place5, bkt:'p5', lbl:'5th Place',    cls:'con'},
-    {m:st.place7, bkt:'p7', lbl:'7th Place',    cls:'con'},
-  ];
-  placeMatches.forEach(({m, bkt, lbl, cls}) => {
-    if (m.a || m.b) {
-      html += `<div>
-        <div class="pl-lbl">${lbl}</div>
-        ${matchHTML(m, bkt, 0, 0, cls)}
-      </div>`;
-    }
-  });
-
-  html += `</div></div></div>`;
-
-  document.getElementById('bkt').innerHTML = html;
+  html+=`<div class="rcol"><div class="rhdr" style="color:#cd7f32">Place Matches</div><div style="display:flex;flex-direction:column;gap:10px">`;
+  [{m:st.place3,bkt:'p3',lbl:'🥉 3rd Place',cls:'pm'},{m:st.place5,bkt:'p5',lbl:'5th Place',cls:'con'},{m:st.place7,bkt:'p7',lbl:'7th Place',cls:'con'}]
+    .forEach(({m,bkt,lbl,cls})=>{
+      if(m.a||m.b){html+=`<div><div class="pl-lbl">${lbl}</div>${matchHTML(m,bkt,0,0,cls)}</div>`;}
+    });
+  html+=`</div></div></div>`;
+  document.getElementById('bkt').innerHTML=html;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// SCORING ENGINE
-// ═══════════════════════════════════════════════════════════════════
-
-const PLACE_PTS = {1:16, 2:12, 3:10, 4:9, 5:7, 6:6, 7:4, 8:3};
+// ══════ SCORING ══════
+const PLACE_PTS={1:16,2:12,3:10,4:9,5:7,6:6,7:4,8:3};
 
 function calcTeamScores() {
-  // schoolName → { advPts, placePts, total, aaCount, placements[] }
-  const teams = {};
-
-  function addTeam(school) {
-    if (!teams[school]) teams[school] = { advPts:0, placePts:0, total:0, aaCount:0, placements:[] };
-    return teams[school];
-  }
-
-  function champWin(wr) {
-    if (!wr) return;
-    const t = addTeam(wr.s);
-    t.advPts += 1;
-  }
-  function conWin(wr) {
-    if (!wr) return;
-    const t = addTeam(wr.s);
-    t.advPts += 0.5;
-  }
-  function placePts(wr, place) {
-    if (!wr) return;
-    const t = addTeam(wr.s);
-    const pts = PLACE_PTS[place] || 0;
-    t.placePts += pts;
-    t.aaCount++;
-    t.placements.push({place, pts, wt:'?'});
-  }
-
-  WLIST.forEach(wt => {
-    if (!states[wt]) return;
-    const st = states[wt];
-
-    // Championship advancement wins
-    // pigtail winner
-    if (st.pigtail.w) champWin(st.pigtail[st.pigtail.w]);
-
-    // champ rounds 0-3 (R1 through SF) — each win = 1 pt
-   // for (let ri = 0; ri < 5; ri++) {
-      // Championship round wins (each = 1 pt) — Finals excluded
-st.champ.forEach((round, ri) => {
-  if (ri === 4) return; // Finals win = placement points only
-  round.forEach(m => { if (m.w) champWin(m[m.w]); });
-});
-    //} 
-
-    // Consolation wins = 0.5 each
-    if (st.conPigtail.w) conWin(st.conPigtail[st.conPigtail.w]);
-    st.con.forEach(round => {
-      round.forEach(m => {
-        if (m.w) conWin(m[m.w]);
-      });
-    });
-    // Place match wins
-    // if (st.place3.w) conWin(st.place3[st.place3.w]);
-    // if (st.place5.w) conWin(st.place5[st.place5.w]);
-    // if (st.place7.w) conWin(st.place7[st.place7.w]);
-
-    // Placement points from All-Americans
-    const aa = getAllAmericans(st);
-    aa.forEach(({place, wr}) => {
-      if (wr) placePts(wr, place);
-    });
+  const teams={};
+  function addTeam(school){if(!teams[school])teams[school]={advPts:0,placePts:0,total:0,aaCount:0,placements:[]};return teams[school];}
+  function champWin(wr){if(!wr)return;addTeam(wr.s).advPts+=1;}
+  function conWin(wr){if(!wr)return;addTeam(wr.s).advPts+=0.5;}
+  function placePts(wr,place){if(!wr)return;const t=addTeam(wr.s);const pts=PLACE_PTS[place]||0;t.placePts+=pts;t.aaCount++;t.placements.push({place,pts});}
+  WLIST.forEach(wt=>{
+    if(!states[wt])return;
+    const st=states[wt];
+    if(st.pigtail.w)champWin(st.pigtail[st.pigtail.w]);
+    st.champ.forEach((round,ri)=>{if(ri===4)return;round.forEach(m=>{if(m.w)champWin(m[m.w]);});});
+    if(st.conPigtail.w)conWin(st.conPigtail[st.conPigtail.w]);
+    st.con.forEach(round=>{round.forEach(m=>{if(m.w)conWin(m[m.w]);});});
+    getAllAmericans(st).forEach(({place,wr})=>{if(wr)placePts(wr,place);});
   });
-
-  // Compute totals
-  Object.values(teams).forEach(t => {
-    t.total = t.advPts + t.placePts;
-  });
-
-  // Sort by total desc, then placePts desc, then aaCount desc
-  return Object.entries(teams)
-    .map(([school, d]) => ({school, ...d}))
-    .sort((a, b) => b.total - a.total || b.placePts - a.placePts || b.aaCount - a.aaCount);
+  Object.values(teams).forEach(t=>{t.total=t.advPts+t.placePts;});
+  return Object.entries(teams).map(([school,d])=>({school,...d})).sort((a,b)=>b.total-a.total||b.placePts-a.placePts||b.aaCount-a.aaCount);
 }
 
 function renderScores() {
-  const data = calcTeamScores();
-  const top15 = data.slice(0, 15);
-  const maxPts = top15.length ? top15[0].total : 1;
-
-  // Count total matches decided so far
-  let matchCount = 0;
-  WLIST.forEach(wt => {
-    if (!states[wt]) return;
-    const st = states[wt];
-    const allMatches = [st.pigtail, st.conPigtail, ...st.champ.flat(), ...st.con.flat(), st.place3, st.place5, st.place7];
-    allMatches.forEach(m => { if (m && m.w) matchCount++; });
+  const data=calcTeamScores();
+  const top15=data.slice(0,15);
+  const maxPts=top15.length?top15[0].total:1;
+  let matchCount=0;
+  WLIST.forEach(wt=>{
+    if(!states[wt])return;
+    const st=states[wt];
+    const allM=[st.pigtail,st.conPigtail,...st.champ.flat(),...st.con.flat(),st.place3,st.place5,st.place7];
+    allM.forEach(m=>{if(m&&m.w)matchCount++;});
   });
-
-  const body = document.getElementById('lb-body');
-  if (!top15.length) {
-    body.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No results yet — advance wrestlers in the bracket to see team scores</td></tr>`;
-    document.getElementById('scores-note').textContent = '';
+  const body=document.getElementById('lb-body');
+  if(!top15.length){
+    body.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No results yet — advance wrestlers in the bracket to see team scores</td></tr>`;
+    document.getElementById('scores-note').textContent='';
     return;
   }
-
-  body.innerHTML = top15.map((t, i) => {
-    const rank = i + 1;
-    const barPct = maxPts > 0 ? (t.total / maxPts * 100).toFixed(1) : 0;
-    const advStr = t.advPts > 0 ? `+${fmt(t.advPts)}` : '—';
-    const placeStr = t.placePts > 0 ? fmt(t.placePts) : '—';
-    const aaStr = t.aaCount > 0 ? `${t.aaCount} AA` : '—';
+  body.innerHTML=top15.map((t,i)=>{
+    const rank=i+1;
+    const barPct=maxPts>0?(t.total/maxPts*100).toFixed(1):0;
+    const advStr=t.advPts>0?`+${fmt(t.advPts)}`:'—';
+    const placeStr=t.placePts>0?fmt(t.placePts):'—';
+    const aaStr=t.aaCount>0?`${t.aaCount} AA`:'—';
     return `<tr class="rank-${rank}">
       <td class="lb-td-rank">${rank}</td>
       <td class="lb-td-school">${t.school}</td>
@@ -1660,223 +936,123 @@ function renderScores() {
       <td class="lb-bar-wrap"><div class="lb-bar"><div class="lb-bar-fill" style="width:${barPct}%"></div></div></td>
     </tr>`;
   }).join('');
-
-  document.getElementById('scores-note').textContent =
-    `${matchCount} match${matchCount===1?'':'es'} decided across ${WLIST.filter(w=>states[w]).length} weight class${WLIST.filter(w=>states[w]).length===1?'':'es'} · Scores update live as you advance wrestlers`;
+  document.getElementById('scores-note').textContent=`${matchCount} match${matchCount===1?'':'es'} decided across ${WLIST.filter(w=>states[w]).length} weight class${WLIST.filter(w=>states[w]).length===1?'':'es'} · Scores update live as you advance wrestlers`;
 }
 
-function fmt(n) {
-  return n % 1 === 0 ? n.toString() : n.toFixed(1);
-}
+function fmt(n){return n%1===0?n.toString():n.toFixed(1);}
 
-// ─── INIT ───
+// ══════ INIT ══════
 renderWeightTabs();
 render();
 
-// ═══════════════════════════════════════════════════════════
-// PRINT — modal + per-page bracket builder
-// ═══════════════════════════════════════════════════════════
-
-// Populate modal checkboxes
-(function initPrintModal() {
-  const grid = document.getElementById('pm-checks');
-  WLIST.forEach(w => {
-    const lbl = document.createElement('label');
-    lbl.className = 'pm-wchk';
-    lbl.innerHTML = `<input type="checkbox" value="${w}" checked><span>${w}</span>`;
+// ══════ PRINT ══════
+(function initPrintModal(){
+  const grid=document.getElementById('pm-checks');
+  WLIST.forEach(w=>{
+    const lbl=document.createElement('label');
+    lbl.className='pm-wchk';
+    lbl.innerHTML=`<input type="checkbox" value="${w}" checked><span>${w}</span>`;
     grid.appendChild(lbl);
   });
 })();
 
-function pmSelectAll()  { document.querySelectorAll('#pm-checks input').forEach(c=>c.checked=true); }
-function pmSelectNone() { document.querySelectorAll('#pm-checks input').forEach(c=>c.checked=false); }
+function pmSelectAll(){document.querySelectorAll('#pm-checks input').forEach(c=>c.checked=true);}
+function pmSelectNone(){document.querySelectorAll('#pm-checks input').forEach(c=>c.checked=false);}
+function printBracket(){document.getElementById('print-modal').classList.add('open');}
+function closePrintModal(){document.getElementById('print-modal').classList.remove('open');}
 
-function printBracket() { document.getElementById('print-modal').classList.add('open'); }
-function closePrintModal() { document.getElementById('print-modal').classList.remove('open'); }
-
-function doPrint() {
-  const selected = [...document.querySelectorAll('#pm-checks input:checked')].map(c => +c.value);
-  if (!selected.length) { alert('Select at least one weight class.'); return; }
-  closePrintModal();
-
-  const root = document.getElementById('print-root');
-  root.innerHTML = selected.map(wt =>
-    `<div class="print-page" id="pp-${wt}"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`
-  ).join('');
-
-  // Measure in a width closer to actual print width for more realistic scaling
-  root.style.cssText = 'display:block;position:fixed;top:-99999px;left:0;width:1100px;height:auto;';
-
-  // US Letter landscape printable area approximation at 96dpi with 6mm margins
-  const MM = 3.7795;
-  const PAGE_W = (279.4 - 12) * MM;
-  const PAGE_H = (215.9 - 12) * MM;
-
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    selected.forEach(wt => {
-      const psw = document.getElementById(`psw-${wt}`);
-      const page = document.getElementById(`pp-${wt}`);
-      if (!psw || !page) return;
-
-      const W = psw.scrollWidth;
-      const H = psw.scrollHeight;
-      if (!W || !H) return;
-
-      const zoom = Math.min(PAGE_W / W, PAGE_H / H, 1);
-      page.style.zoom = zoom;
-    });
-
-    setTimeout(() => {
-      root.style.cssText = 'display:block;';
-      window.print();
-      setTimeout(() => {
-        root.style.cssText = 'display:none;';
-        root.innerHTML = '';
-      }, 1500);
-    }, 250);
-  }));
+function pSlot(m,which){
+  const wr=m[which];
+  const isW=m.w===which;
+  const isL=!!(m.w&&m.w!==which);
+  if(!wr)return`<div class="ps tbd"><span class="pstbd">TBD</span></div>`;
+  const seed=wr.seed<=16?wr.seed:'';
+  const parts=wr.n.trim().split(/\s+/).filter(Boolean);
+  const display=parts.length>1?parts[0][0]+'. '+parts.slice(1).join(' '):parts[0];
+  const cls=['ps',isW?'win':'',isL?'los':''].filter(Boolean).join(' ');
+  return`<div class="${cls}"><span class="psseed">${seed}</span><span class="psname">${display}</span><span class="pssch">${wr.s||''}</span></div>`;
 }
-// ── Print page HTML builder ─────────────────────────────────
-
- // function pSlot(m, which) {
- // const wr = m[which];
- // const isW = m.w === which;
- // const isL = m.w && m.w !== which;
-//  if (!wr) return `<div class="ps tbd"><span class="pstbd">TBD</span></div>`;
-//  const seed = wr.seed <= 16 ? wr.seed : '';
-  // Use first initial + last name to save space
-//  const parts = wr.n.trim().split(/\s+/);
-//  const display = parts.length > 1 ? parts[0][0] + '. ' + parts.slice(1).join(' ') : parts[0];
-//  return `<div class="ps ${isW?'win':''} ${isL?'los':''}">
-//    <span class="psseed">${seed}</span>
-//    <span class="psname">${display}</span>
-//    <span class="pssch">${wr.s||''}</span>
-//  </div>`;
-// }
-  function pSlot(m, which) {
-  const wr = m[which];
-  const isW = m.w === which;
-  const isL = !!(m.w && m.w !== which);
-  if (!wr) return `<div class="ps tbd"><span class="pstbd">TBD</span></div>`;
-  const seed = wr.seed <= 16 ? wr.seed : '';
-  const parts = wr.n.trim().split(/\s+/).filter(Boolean);
-  const display = parts.length > 1 ? parts[0][0] + '. ' + parts.slice(1).join(' ') : parts[0];
-  const cls = ['ps', isW ? 'win' : '', isL ? 'los' : ''].filter(Boolean).join(' ');
-  return `<div class="${cls}">
-    <span class="psseed">${seed}</span>
-    <span class="psname">${display}</span>
-    <span class="pssch">${wr.s||''}</span>
-  </div>`;
+function pMatch(m,cls=''){
+  if(!m)return'';
+  return`<div class="pm ${cls}">${pSlot(m,'a')}<div class="pmd"></div>${pSlot(m,'b')}</div>`;
 }
-
-function pMatch(m, cls='') {
-  if (!m) return '';
-  return `<div class="pm ${cls}">${pSlot(m,'a')}<div class="pmd"></div>${pSlot(m,'b')}</div>`;
-}
-
-function pChampCard(champ) {
-  if (champ) {
-    const parts = champ.n.trim().split(/\s+/);
-    const display = parts.length > 1 ? parts[0][0] + '. ' + parts.slice(1).join(' ') : parts[0];
-    return `<div class="pchbox"><div class="pchcard">
-      <div class="pcrown">🏆</div><div class="pclbl">Champ</div>
-      <div class="pcnm">${display}</div><div class="pcsc">${champ.s}</div>
-    </div></div>`;
+function pChampCard(champ){
+  if(champ){
+    const parts=champ.n.trim().split(/\s+/);
+    const display=parts.length>1?parts[0][0]+'. '+parts.slice(1).join(' '):parts[0];
+    return`<div class="pchbox"><div class="pchcard"><div class="pcrown">🏆</div><div class="pclbl">Champ</div><div class="pcnm">${display}</div><div class="pcsc">${champ.s}</div></div></div>`;
   }
-  return `<div class="pchbox"><div class="pchcard empty">
-    <div class="pcrown">🏆</div><div class="pclbl">Champ</div><div class="pcnm">—</div>
-  </div></div>`;
+  return`<div class="pchbox"><div class="pchcard empty"><div class="pcrown">🏆</div><div class="pclbl">Champ</div><div class="pcnm">—</div></div></div>`;
+}
+function buildPrintPage(wt){
+  const st=getS(wt);
+  const MH=30,GAP=1;
+  const RN=['Rd 1','Rd 16','QF','SF','Final'];
+  const CN=['Con 1','Con 2','Con 3','Con 4','Con Qtrs','Con SF'];
+  let h=`<div class="ph"><div><div class="ph-title">NCAA Wrestling Championships</div><div class="ph-sub">Division I · Cleveland, OH · March 19–21, 2026</div></div><div class="ph-wt">${wt} lbs</div><div class="ph-right"><div class="ph-clbl">Champion</div>${st.champion?`<div class="ph-cnm">${st.champion.n}</div><div class="ph-csc">${st.champion.s}</div>`:`<div class="ph-cnm" style="color:#aaa;font-weight:400">—</div>`}</div></div>`;
+  h+=`<div class="ps-lbl">Championship Bracket</div>`;
+  h+=`<div class="pbg">`;
+  h+=`<div class="prc"><div class="prh">Pigtail</div><div>${pMatch(st.pigtail,'pigtail')}</div></div><div class="prcn"></div>`;
+  st.champ.forEach((round,ri)=>{
+    const sp=Math.pow(2,ri);
+    h+=`<div class="prc"><div class="prh">${RN[ri]}</div><div>`;
+    round.forEach((m,mi)=>{
+      const mt=mi===0?(sp-1)*(MH+GAP)/2:(sp-1)*(MH+GAP);
+      h+=`<div style="margin-top:${mt}px;margin-bottom:${GAP}px">${pMatch(m,ri===4?'champ-final':'')}</div>`;
+    });
+    h+=`</div></div><div class="prcn"></div>`;
+  });
+  h+=pChampCard(st.champion);
+  h+=`</div>`;
+  h+=`<div class="ps-lbl">Consolation Bracket</div>`;
+  h+=`<div class="pbg" style="align-items:flex-start">`;
+  h+=`<div style="width:100px;flex-shrink:0"></div>`;
+  const cpData=st.conPigtail.a||st.conPigtail.b;
+  h+=`<div class="prc"><div class="prh">Con Pigtail</div><div>`;
+  h+=cpData?pMatch(st.conPigtail,'consolation'):`<div style="min-width:98px;min-height:${MH}px"></div>`;
+  h+=`</div></div><div class="prcn"></div>`;
+  st.con.forEach((round,ri)=>{
+    const anyData=round.some(m=>m.a||m.b);
+    h+=`<div class="prc"><div class="prh">${CN[ri]}</div><div style="display:flex;flex-direction:column;gap:${GAP}px">`;
+    if(anyData){round.forEach(m=>{h+=`<div>${pMatch(m,'consolation')}</div>`;});}
+    else{h+=`<div style="min-width:98px;min-height:${MH}px"></div>`;}
+    h+=`</div></div><div class="prcn"></div>`;
+  });
+  h+=`<div class="prc"><div class="prh">Places</div><div style="display:flex;flex-direction:column;gap:3px">`;
+  [{m:st.place3,lbl:'3rd Place'},{m:st.place5,lbl:'5th Place'},{m:st.place7,lbl:'7th Place'}].forEach(({m,lbl})=>{
+    if(m.a||m.b)h+=`<div><div class="ppl-lbl">${lbl}</div>${pMatch(m,'place-match')}</div>`;
+  });
+  h+=`</div></div></div>`;
+  return h;
 }
 
-function buildPrintPage(wt) {
-  const st = getS(wt);
-  const MH = 30, GAP = 1;
-  const RN  = ['Rd 1','Rd 16','QF','SF','Final'];
-  const CN  = ['Con 1','Con 2','Con 3','Con 4','Con Qtrs','Con SF'];
-
-  let h = `<div class="ph">
-    <div>
-      <div class="ph-title">NCAA Wrestling Championships</div>
-      <div class="ph-sub">Division I · Cleveland, OH · March 19–21, 2026</div>
-    </div>
-    <div class="ph-wt">${wt} lbs</div>
-    <div class="ph-right">
-      <div class="ph-clbl">Champion</div>
-      ${st.champion
-        ? `<div class="ph-cnm">${st.champion.n}</div><div class="ph-csc">${st.champion.s}</div>`
-        : `<div class="ph-cnm" style="color:#aaa;font-weight:400">—</div>`}
-    </div>
-  </div>`;
-
-  h += `<div class="ps-lbl">Championship Bracket</div>`;
-  h += `<div class="pbg">`;
-
-  // Pigtail
-  h += `<div class="prc"><div class="prh">Pigtail</div><div>${pMatch(st.pigtail,'pigtail')}</div></div>`;
-  h += `<div class="prcn"></div>`;
-
-  // Championship rounds
-  st.champ.forEach((round, ri) => {
-    const sp = Math.pow(2, ri);
-    h += `<div class="prc"><div class="prh">${RN[ri]}</div><div>`;
-    round.forEach((m, mi) => {
-      const mt = mi===0 ? (sp-1)*(MH+GAP)/2 : (sp-1)*(MH+GAP);
-      h += `<div style="margin-top:${mt}px;margin-bottom:${GAP}px">${pMatch(m, ri===4?'champ-final':'')}</div>`;
+function doPrint(){
+  const selected=[...document.querySelectorAll('#pm-checks input:checked')].map(c=>+c.value);
+  if(!selected.length){alert('Select at least one weight class.');return;}
+  closePrintModal();
+  const root=document.getElementById('print-root');
+  root.innerHTML=selected.map(wt=>`<div class="print-page" id="pp-${wt}"><div class="psw" id="psw-${wt}">${buildPrintPage(wt)}</div></div>`).join('');
+  root.style.cssText='display:block;position:fixed;top:-99999px;left:0;width:1100px;height:auto;';
+  const MM=3.7795;
+  const PAGE_W=(279.4-12)*MM;
+  const PAGE_H=(215.9-12)*MM;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    selected.forEach(wt=>{
+      const psw=document.getElementById(`psw-${wt}`);
+      const page=document.getElementById(`pp-${wt}`);
+      if(!psw||!page)return;
+      const W=psw.scrollWidth,H=psw.scrollHeight;
+      if(!W||!H)return;
+      const zoom=Math.min(PAGE_W/W,PAGE_H/H,1);
+      page.style.zoom=zoom;
     });
-    h += `</div></div><div class="prcn"></div>`;
-  });
-
-  h += pChampCard(st.champion);
-  h += `</div>`;
-
-  h += `<div class="ps-lbl">Consolation Bracket</div>`;
-  h += `<div class="pbg" style="align-items:flex-start">`;
-
-  // Reduced spacer to tighten fit
-  h += `<div style="width:100px;flex-shrink:0"></div>`;
-
-  // Con pigtail
-  const cpData = st.conPigtail.a || st.conPigtail.b;
-  h += `<div class="prc"><div class="prh">Con Pigtail</div><div>`;
-  h += cpData ? pMatch(st.conPigtail,'consolation') : `<div style="min-width:98px;min-height:${MH}px"></div>`;
-  h += `</div></div><div class="prcn"></div>`;
-
-  st.con.forEach((round, ri) => {
-    const anyData = round.some(m => m.a || m.b);
-    h += `<div class="prc"><div class="prh">${CN[ri]}</div><div style="display:flex;flex-direction:column;gap:${GAP}px">`;
-    if (anyData) {
-      round.forEach(m => {
-        h += `<div>${pMatch(m,'consolation')}</div>`;
-      });
-    } else {
-      h += `<div style="min-width:98px;min-height:${MH}px"></div>`;
-    }
-    h += `</div></div><div class="prcn"></div>`;
-  });
-
-  h += `<div class="prc"><div class="prh">Places</div><div style="display:flex;flex-direction:column;gap:3px">`;
-  [{m:st.place3,lbl:'3rd Place'},{m:st.place5,lbl:'5th Place'},{m:st.place7,lbl:'7th Place'}]
-    .forEach(({m,lbl}) => {
-      if (m.a || m.b) h += `<div><div class="ppl-lbl">${lbl}</div>${pMatch(m,'place-match')}</div>`;
-    });
-  h += `</div></div>`;
-
-  h += `</div>`;
-  return h;
+    setTimeout(()=>{
+      root.style.cssText='display:block;';
+      window.print();
+      setTimeout(()=>{root.style.cssText='display:none;';root.innerHTML='';},1500);
+    },250);
+  }));
 }
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
