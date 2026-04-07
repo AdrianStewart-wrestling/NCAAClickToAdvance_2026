@@ -1262,39 +1262,51 @@ async function doPrint(){
 }
 
 async function submitOfficialResults(){
-  const selected=[...document.querySelectorAll('#results-checks input:checked')].map(c=>+c.value);
+  const selected = [...document.querySelectorAll('#results-checks input:checked')].map(c => +c.value);
   if(!selected.length){
     alert('Select at least one weight class.');
     return;
   }
+
+  const adminPin = (prompt('Enter Admin PIN to submit official results:') || '').trim();
+  if(!adminPin){
+    alert('Results submission cancelled.');
+    return;
+  }
+
   const payload = {
     mode: 'officialResults',
+    adminPin,
     source: 'NCAA Click-to-Advance Bracket',
     submittedAt: new Date().toISOString(),
     selectedWeights: selected,
     weights: selected.map(wt => buildWeightPayload(wt))
   };
+
   try {
     const res = await fetch(SHEETS_WEBAPP_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
+
     const data = await res.json();
     console.log('OfficialResults response:', data);
     closeResultsModal();
+
     if (!data || data.status !== 'ok') {
       alert(data?.message || 'Results submit failed.');
       return;
     }
+
     alert(`Official results saved for ${selected.join(', ')}.\nRows written: ${data.rowsWritten || 0}`);
     refreshLeaderboard();
+
   } catch (err) {
     console.error(err);
     alert('Results submit failed. Check Apps Script deployment permissions.');
   }
 }
-
 async function refreshLeaderboard(){
   const body=document.getElementById('leaderboard-body');
   const note=document.getElementById('leaderboard-note');
