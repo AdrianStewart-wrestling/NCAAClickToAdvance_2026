@@ -1631,11 +1631,11 @@ async function refreshLeaderboard(){
   body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">Loading leaderboard...</td></tr>`;
   if (note) note.textContent='';
   try {
-    const res = await fetch(`${SHEETS_WEBAPP_URL}?action=getLeaderboard`);
-    const data = await res.json();
-    const rows = (data && data.leaderboard ? data.leaderboard : []).slice();
+    const snap = await getDocs(query(collection(db, "leaderboard"), orderBy("rank", "asc")));
+    const rows = [];
+    snap.forEach(d => rows.push(d.data()));
     if (!rows.length) {
-      body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No scores yet. Run scoreAllSubmissions() after adding official results.</td></tr>`;
+      body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No scores yet.</td></tr>`;
       if (note) note.textContent='';
       return;
     }
@@ -1645,7 +1645,7 @@ async function refreshLeaderboard(){
   } catch(err) {
     console.error(err);
     body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">Could not load leaderboard.</td></tr>`;
-    if (note) note.textContent='Check Apps Script deployment and sharing settings.';
+    if (note) note.textContent='Firestore connection error — check console.';
   }
 }
 
