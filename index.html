@@ -1642,22 +1642,36 @@ async function refreshLeaderboard(){
   body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">Loading leaderboard...</td></tr>`;
   if (note) note.textContent='';
   try {
-    // ── Read leaderboard from Firestore ───────────────────
-    const snap = await getDocs(query(collection(db, "leaderboard"), orderBy("rank", "asc")));
+    // ── Read leaderboard from Firestore — no orderBy (avoids index requirement) ──
+    const snap = await getDocs(collection(db, "leaderboard"));
     const rows = [];
     snap.forEach(d => rows.push(d.data()));
+    
     if (!rows.length) {
       body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">No scores yet.</td></tr>`;
       if (note) note.textContent='';
       return;
     }
-    body.innerHTML = rows.map((r,i)=>`<tr class="rank-${i<3?i+1:0}"><td class="lb-td-rank">${r.rank || i+1}</td><td class="lb-td-school">${r.entryName || '—'}</td><td class="lb-td-school">${r.userName || '—'}</td><td class="lb-td-pts">${r.correctPicks ?? 0}</td><td class="lb-td-pts">${r.totalScore ?? 0}</td><td class="lb-td-aa">${r.status || ''}</td></tr>`).join('');
+
+    // Sort client-side by rank ascending
+    rows.sort((a, b) => (Number(a.rank) || 999) - (Number(b.rank) || 999));
+
+    body.innerHTML = rows.map((r,i)=>`<tr class="rank-${i<3?i+1:0}">
+      <td class="lb-td-rank">${r.rank || i+1}</td>
+      <td class="lb-td-school">${r.entryName || '—'}</td>
+      <td class="lb-td-school">${r.userName || '—'}</td>
+      <td class="lb-td-pts">${r.correctPicks ?? 0}</td>
+      <td class="lb-td-pts">${r.totalScore ?? 0}</td>
+      <td class="lb-td-aa">${r.status || ''}</td>
+    </tr>`).join('');
+
     const scoredAt = rows[0]?.lastScoredAt ? new Date(rows[0].lastScoredAt).toLocaleString() : '';
-    if (note) note.textContent = `${rows.length} entry${rows.length===1?'':'ies'} ranked${scoredAt ? ` · Last scored ${scoredAt}` : ''}`;
+    if (note) note.textContent = `${rows.length} entr${rows.length===1?'y':'ies'} ranked${scoredAt ? ` · Last scored ${scoredAt}` : ''}`;
+
   } catch(err) {
-    console.error(err);
-    body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">Could not load leaderboard.</td></tr>`;
-    if (note) note.textContent='Firestore connection error — check console.';
+    console.error("Leaderboard error:", err);
+    body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:20px;font-size:12px;color:var(--t3);font-style:italic">Could not load leaderboard: ${err.message}</td></tr>`;
+    if (note) note.textContent='Firestore error — check console for details.';
   }
 }
 
